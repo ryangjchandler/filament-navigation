@@ -1,0 +1,27 @@
+preset: package
+
+namespace: RyanChandler\FilamentNavigation
+user-auth-provider: App\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: RyanChandler\FilamentNavigation\Console
+
+model:
+  namespace: RyanChandler\FilamentNavigation
+
+provider:
+  namespace: RyanChandler\FilamentNavigation\Providers
+
+testing:
+  namespace: RyanChandler\FilamentNavigation\Tests

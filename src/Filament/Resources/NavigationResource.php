@@ -11,6 +11,7 @@ use Filament\Forms\Components\ViewField;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\HtmlString;
 use RyanChandler\FilamentNavigation\Models\Navigation;
 
@@ -26,6 +27,7 @@ class NavigationResource extends Resource
                     TextInput::make('name')
                         ->required(),
                     ViewField::make('items')
+                        ->default([])
                         ->view('filament-navigation::navigation-builder'),
                 ])
                     ->columnSpan(8),
@@ -46,7 +48,14 @@ class NavigationResource extends Resource
     {
         return $table
             ->columns([
-
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
             ])
             ->filters([
 
@@ -58,6 +67,7 @@ class NavigationResource extends Resource
         return [
             'index' => NavigationResource\Pages\ListNavigations::route('/'),
             'create' => NavigationResource\Pages\CreateNavigation::route('/create'),
+            'edit' => NavigationResource\Pages\EditNavigation::route('/{record}'),
         ];
     }
 }

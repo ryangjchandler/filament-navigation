@@ -11,9 +11,13 @@
 >
     <div wire:key="navigation-items-wrapper">
         <div class="space-y-2">
-            @foreach($getState() as $uuid => $item)
+            @forelse($getState() as $uuid => $item)
                 <x-filament-navigation::nav-item :statePath="$getStatePath() . '.' . $uuid" :item="$item" :moveUp="!$loop->first" :moveDown="!$loop->last" :indent="!$loop->first && $loop->count > 1" />
-            @endforeach
+            @empty
+                <div class="w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left">
+                    No items.
+                </div>
+            @endforelse
         </div>
     </div>
 

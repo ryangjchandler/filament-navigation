@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('navigations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('handle')->unique();
             $table->json('items')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -93,7 +93,7 @@ FilamentNavigation::addItemType('Post link', [
 
 All custom fields for the item type can be found inside of the `data` property on the item.
 
-### The `Navigation` field type (coming soon)
+### The `Navigation` field type
 
 This plugin also provides a custom Filament field that can be used to search and select a navigation menu inside other forms and resources.
 

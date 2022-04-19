@@ -21,6 +21,13 @@ class NavigationResource extends Resource
 {
     protected static ?string $model = Navigation::class;
 
+    protected static bool $showTimestamps = true;
+
+    public static function disableTimestamps(bool $condition = true): void
+    {
+        static::$showTimestamps = !$condition;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -47,10 +54,13 @@ class NavigationResource extends Resource
                         TextInput::make('handle')
                             ->required()
                             ->unique(ignoreRecord: true),
-                        View::make('filament-navigation::card-divider'),
+                        View::make('filament-navigation::card-divider')
+                            ->visible(static::$showTimestamps),
                         Placeholder::make('created_at')
+                            ->visible(static::$showTimestamps)
                             ->content(fn (?Navigation $record) => $record ? $record->created_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
                         Placeholder::make('updated_at')
+                            ->visible(static::$showTimestamps)
                             ->content(fn (?Navigation $record) => $record ? $record->updated_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
                     ])
                 ])

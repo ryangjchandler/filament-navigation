@@ -7,6 +7,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
+use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class FilamentNavigationManager
 {
@@ -23,6 +24,11 @@ class FilamentNavigationManager
         ];
 
         return $this;
+    }
+
+    public function get(string $handle): ?Navigation
+    {
+        return Navigation::firstWhere('handle', $handle);
     }
 
     public function getItemTypes(): array

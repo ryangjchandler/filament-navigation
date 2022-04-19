@@ -27,7 +27,7 @@ class NavigationResource extends Resource
 
     public static function disableTimestamps(bool $condition = true): void
     {
-        static::$showTimestamps = !$condition;
+        static::$showTimestamps = ! $condition;
     }
 
     public static function form(Form $form): Form
@@ -38,7 +38,9 @@ class NavigationResource extends Resource
                     TextInput::make('name')
                         ->reactive()
                         ->afterStateUpdated(function (?string $state, Closure $set) {
-                            if (! $state) return;
+                            if (! $state) {
+                                return;
+                            }
 
                             $set('handle', Str::slug($state));
                         })
@@ -49,7 +51,7 @@ class NavigationResource extends Resource
                 ])
                     ->columnSpan([
                         12,
-                        'lg' => 8
+                        'lg' => 8,
                     ]),
                 Group::make([
                     Card::make([
@@ -64,12 +66,12 @@ class NavigationResource extends Resource
                         Placeholder::make('updated_at')
                             ->visible(static::$showTimestamps)
                             ->content(fn (?Navigation $record) => $record ? $record->updated_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
-                    ])
+                    ]),
                 ])
                     ->columnSpan([
                         12,
-                        'lg' => 4
-                    ])
+                        'lg' => 4,
+                    ]),
             ])
             ->columns(12);
     }
@@ -87,7 +89,7 @@ class NavigationResource extends Resource
                     ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
-                    ->sortable()
+                    ->sortable(),
             ])
             ->filters([
 

@@ -21,6 +21,8 @@ class NavigationResource extends Resource
 {
     protected static ?string $model = Navigation::class;
 
+    protected static ?string $navigationIcon = 'heroicon-o-menu';
+
     protected static bool $showTimestamps = true;
 
     public static function disableTimestamps(bool $condition = true): void

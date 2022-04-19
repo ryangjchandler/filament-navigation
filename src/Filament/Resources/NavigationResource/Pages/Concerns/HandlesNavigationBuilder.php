@@ -28,7 +28,7 @@ trait HandlesNavigationBuilder
     {
         $this->mountedChildTarget = $statePath;
 
-        $this->mountAction('add');
+        $this->mountAction('item');
     }
 
     public function removeItem(string $statePath)
@@ -128,13 +128,13 @@ trait HandlesNavigationBuilder
         $this->mountedItem = $statePath;
         $this->mountedItemData = Arr::except(data_get($this, $statePath), 'children');
 
-        $this->mountAction('add');
+        $this->mountAction('item');
     }
 
     protected function getActions(): array
     {
         return [
-            Action::make('add')
+            Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
                     $form->fill($this->mountedItemData);
                 })

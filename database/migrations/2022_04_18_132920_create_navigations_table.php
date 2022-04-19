@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('handle')->unique();
             $table->json('items')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

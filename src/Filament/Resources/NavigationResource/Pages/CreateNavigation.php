@@ -18,34 +18,4 @@ class CreateNavigation extends CreateRecord
     use HandlesNavigationBuilder;
 
     protected static string $resource = NavigationResource::class;
-
-    protected function getActions(): array
-    {
-        return [
-            Action::make('add')
-                ->view('filament-navigation::hidden-action')
-                ->form([
-                    TextInput::make('label')
-                        ->required(),
-                    TextInput::make('url')
-                        ->label('URL')
-                        ->required(),
-                    Select::make('target')
-                        ->default('')
-                        ->options([
-                            '' => 'Same tab',
-                            '_blank' => 'New tab',
-                        ])
-                        ->nullable(),
-                ])
-                ->modalWidth('md')
-                ->action(function (array $data) {
-                    $this->data['items'][(string) Str::uuid()] = [
-                        ...$data,
-                        ...['children' => []],
-                    ];
-                })
-                ->label('Add Item'),
-        ];
-    }
 }

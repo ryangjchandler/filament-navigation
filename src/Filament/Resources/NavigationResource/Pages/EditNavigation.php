@@ -21,42 +21,4 @@ class EditNavigation extends EditRecord
     use HandlesNavigationBuilder;
 
     protected static string $resource = NavigationResource::class;
-
-    protected function getActions(): array
-    {
-        return [
-            Action::make('add')
-                ->mountUsing(function (ComponentContainer $form) {
-                    $form->fill($this->mountedItemData);
-                })
-                ->view('filament-navigation::hidden-action')
-                ->form([
-                    TextInput::make('label')
-                        ->required(),
-                    TextInput::make('url')
-                        ->label('URL')
-                        ->required(),
-                    Select::make('target')
-                        ->default('')
-                        ->options([
-                            '' => 'Same tab',
-                            '_blank' => 'New tab',
-                        ])
-                        ->nullable(),
-                ])
-                ->modalWidth('md')
-                ->action(function (array $data) {
-                    if ($this->mountedItem) {
-                        data_set($this, $this->mountedItem, array_merge(data_get($this, $this->mountedItem), $data));
-                    } else {
-                        $this->data['items'][(string) Str::uuid()] = [
-                            ...$data,
-                            ...['children' => []],
-                        ];
-                    }
-                })
-                ->modalButton('Save')
-                ->label('Item')
-        ];
-    }
 }

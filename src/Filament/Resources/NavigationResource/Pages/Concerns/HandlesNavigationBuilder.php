@@ -2,11 +2,13 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns;
 
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Filament\Pages\Actions\Action;
+use Filament\Forms\Components\Select;
 
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\TextInput;
 use function Filament\Forms\array_move_after;
 use function Filament\Forms\array_move_before;
 
@@ -15,6 +17,15 @@ trait HandlesNavigationBuilder
     public $mountedItem;
 
     public $mountedItemData = [];
+
+    public $mountedChildTarget;
+
+    public function addChild(string $statePath)
+    {
+        $this->mountedChildTarget = $statePath;
+
+        $this->mountAction('add');
+    }
 
     public function removeItem(string $statePath)
     {
@@ -114,5 +125,57 @@ trait HandlesNavigationBuilder
         $this->mountedItemData = Arr::except(data_get($this, $statePath), 'children');
 
         $this->mountAction('add');
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            Action::make('add')
+                ->mountUsing(function (ComponentContainer $form) {
+                    $form->fill($this->mountedItemData);
+                })
+                ->view('filament-navigation::hidden-action')
+                ->form([
+                    TextInput::make('label')
+                        ->required(),
+                    TextInput::make('url')
+                        ->label('URL')
+                        ->required(),
+                    Select::make('target')
+                        ->default('')
+                        ->options([
+                            '' => 'Same tab',
+                            '_blank' => 'New tab',
+                        ])
+                        ->nullable(),
+                ])
+                ->modalWidth('md')
+                ->action(function (array $data) {
+                    if ($this->mountedItem) {
+                        data_set($this, $this->mountedItem, array_merge(data_get($this, $this->mountedItem), $data));
+
+                        $this->mountedItem = null;
+                        $this->mountedItemData = [];
+                    } elseif ($this->mountedChildTarget) {
+                        $children = data_get($this, $this->mountedChildTarget . '.children', []);
+
+                        $children[(string) Str::uuid()] = [
+                            ...$data,
+                            ...['children' => []],
+                        ];
+
+                        data_set($this, $this->mountedChildTarget . '.children', $children);
+
+                        $this->mountedChildTarget = null;
+                    } else {
+                        $this->data['items'][(string) Str::uuid()] = [
+                            ...$data,
+                            ...['children' => []],
+                        ];
+                    }
+                })
+                ->modalButton('Save')
+                ->label('Item')
+        ];
     }
 }

@@ -55,7 +55,7 @@ class NavigationResource extends Resource
                     Card::make([
                         TextInput::make('handle')
                             ->required()
-                            ->unique(ignoreRecord: true),
+                            ->unique(column: 'handle', ignoreRecord: true),
                         View::make('filament-navigation::card-divider')
                             ->visible(static::$showTimestamps),
                         Placeholder::make('created_at')

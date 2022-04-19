@@ -27,6 +27,10 @@
             'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
             'dark:border-gray-600 dark:divide-gray-600' => config('forms.dark_mode'),
         ])>
+            <button x-init x-tooltip.raw="Add child" type="button" wire:click="addChild('{{ $statePath }}')" class="p-1" title="Add child">
+                <x-heroicon-o-plus class="w-3 h-3 text-gray-500 hover:text-gray-900" />
+            </button>
+
             @if($moveUp)
                 <button x-init x-tooltip.raw="Move up" type="button" wire:click="moveItemUp('{{ $statePath }}')" class="p-1" title="Move up">
                     <x-heroicon-o-arrow-up class="w-3 h-3 text-gray-500 hover:text-gray-900" />

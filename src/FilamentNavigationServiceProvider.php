@@ -17,7 +17,7 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
     protected function getStyles(): array
     {
         return [
-            asset('vendor/filament-navigation/plugin.css')
+            asset('vendor/filament-navigation/plugin.css'),
         ];
     }
 

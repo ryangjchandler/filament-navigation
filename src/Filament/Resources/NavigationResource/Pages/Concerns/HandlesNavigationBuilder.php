@@ -146,7 +146,7 @@ trait HandlesNavigationBuilder
                         ->options(function () {
                             $types = FilamentNavigation::getItemTypes();
 
-                            return array_combine(array_keys($types), array_keys($types));
+                            return array_combine(array_keys($types), Arr::pluck($types, 'name'));
                         })
                         ->reactive(),
                     Group::make()

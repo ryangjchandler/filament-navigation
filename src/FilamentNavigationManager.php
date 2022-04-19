@@ -17,8 +17,7 @@ class FilamentNavigationManager
 
     public function addItemType(string $name, array | Closure $fields = []): static
     {
-        $this->itemTypes[$name] = [
-            'id' => Str::slug($name),
+        $this->itemTypes[Str::slug($name)] = [
             'name' => 'name',
             'fields' => $fields,
         ];
@@ -34,8 +33,7 @@ class FilamentNavigationManager
     public function getItemTypes(): array
     {
         return array_merge([
-            'External link' => [
-                'id' => 'external-link',
+            'external-link' => [
                 'name' => 'External link',
                 'fields' => [
                     TextInput::make('url')

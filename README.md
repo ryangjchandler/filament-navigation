@@ -5,47 +5,124 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ryangjchandler/filament-navigation/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ryangjchandler/filament-navigation/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/ryangjchandler/filament-navigation.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-navigation)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This plugin for Filament provides a `Navigation` resource that allows to build structural navigation menus with ease.
 
 ## Installation
 
-You can install the package via composer:
+Begin by installing this package via Composer:
 
-```bash
+```sh
 composer require ryangjchandler/filament-navigation
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-navigation-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-navigation-config"
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-navigation-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
 ```
 
 ## Usage
 
+The `NavigationResource` is automatically registered with Filament so no configuration is required to start using it.
+
+If you wish to customise the navigation group, sort or icon, you can use the respective `NavigationResource::navigationGroup()`, `NavigationResource::navigationSort()` and `NavigationResource::navigationIcon()` methods.
+
+### Data structure
+
+Each navigation menu is required to have a `name` and `handle`. The `handle` should be unique and used to retrieve the menu.
+
+Items are stored inside of a JSON column called `items`. This is a recursive data structure that looks like:
+
+```json
+[
+    {
+        "label": "Home",
+        "type": "external-link",
+        "data": {
+            "url": "/",
+            "target": "_blank",
+        },
+        "children": [
+            // ...
+        ],
+    }
+]
+```
+
+The recursive structure makes it really simple to render nested menus / dropdowns:
+
+```blade
+<ul>
+    @foreach($menu->items as $item)
+        <li>
+            {{ $item['label'] }}
+
+            @if($item['children'])
+                <ul>
+                    {{-- Render the item's children here... --}}
+                </ul>
+            @endforeach
+        </li>
+    @endforeach
+</ul>
+```
+
+### Retrieving a navigation object
+
+To retreive a navigation object, provide the handle to the `RyanChandler\FilamentNavigation\Facades\FilamentNavigation::get()` method.
+
 ```php
-$filament-navigation = new RyanChandler\FilamentNavigation();
-echo $filament-navigation->echoPhrase('Hello, RyanChandler!');
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+
+$menu = FilamentNavigation::get('main-menu');
+```
+
+### Custom item types
+
+Out of the box, this plugin comes with a single "item type" called "External link". This item type expects a URL to be provided and an optional "target" (same tab or new tab).
+
+It's possible to extend the plugin with custom item types. Custom item types have a name and an array of Filament field objects that will be displayed inside of the "Item" modal.
+
+This API allows you to deeply integrate navigation menus with your application's own entities and models.
+
+```php
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+
+FilamentNavigation::addItemType('Post link', [
+    Select::make('post_id')
+        ->searchable()
+        ->options(function () {
+            return Post::pluck('title', 'id');
+        })
+]);
+```
+
+All custom fields for the item type can be found inside of the `data` property on the item.
+
+### The `Navigation` field type (coming soon)
+
+This plugin also provides a custom Filament field that can be used to search and select a navigation menu inside other forms and resources.
+
+```php
+use RyanChandler\FilamentNavigation\Filament\Fields\NavigationSelect;
+
+->schema([
+    NavigationSelect::make('navigation_id'),
+])
+```
+
+By default, this field will not be searchable and the value for each option will be the menu `id`.
+
+To make the field searchable, call the `->searchable()` method.
+
+```php
+->schema([
+    NavigationSelect::make('navigation_id')
+        ->searchable(),
+])
+```
+
+If you wish to change the value for each option, call the `->optionValue()` method.
+
+```php
+->schema([
+    NavigationSelect::make('navigation_id')
+        ->optionValue('handle'),
+])
 ```
 
 ## Testing

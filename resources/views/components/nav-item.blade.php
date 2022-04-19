@@ -8,7 +8,7 @@
 ])
 
 <div data-state-path="{{ $statePath }}" wire:key="{{ $statePath }}" class="space-y-2">
-    <div class="relative">
+    <div class="relative group">
         @if($nested)
             <span class="absolute top-1/2 -translate-y-1/2 text-xs -ml-3 text-gray-300">
                 &ndash;
@@ -24,7 +24,7 @@
         </button>
 
         <div @class([
-            'absolute top-0 right-0 h-6 flex divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg',
+            'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
             'dark:border-gray-600 dark:divide-gray-600' => config('forms.dark_mode'),
         ])>
             @if($moveUp)

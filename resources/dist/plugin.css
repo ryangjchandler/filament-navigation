@@ -51,60 +51,8 @@
   position: relative
 }
 
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
-}
-
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
-}
-
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
-}
-
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
-}
-
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
-}
-
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
-}
-
-.filament-navigation .top-0 {
-  top: 0px
-}
-
-.filament-navigation .right-0 {
-  right: 0px
+.filament-navigation .top-1\/2 {
+  top: 50%
 }
 
 .filament-navigation .top-0 {
@@ -187,14 +135,6 @@
   right: 0px
 }
 
-.filament-navigation .ml-6 {
-  margin-left: 1.5rem
-}
-
-.filament-navigation .ml-3 {
-  margin-left: 0.75rem
-}
-
 .filament-navigation .-ml-3 {
   margin-left: -0.75rem
 }
@@ -237,22 +177,6 @@
 
 .filament-navigation .-ml-3 {
   margin-left: -0.75rem
-}
-
-.filament-navigation .ml-3 {
-  margin-left: 0.75rem
-}
-
-.filament-navigation .-ml-2 {
-  margin-left: -0.5rem
-}
-
-.filament-navigation .ml-3 {
-  margin-left: 0.75rem
-}
-
-.filament-navigation .-ml-4 {
-  margin-left: -1rem
 }
 
 .filament-navigation .ml-3 {
@@ -271,60 +195,8 @@
   display: flex
 }
 
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
-}
-
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
-}
-
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
-}
-
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
-}
-
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
-}
-
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
-}
-
-.filament-navigation .h-6 {
-  height: 1.5rem
-}
-
-.filament-navigation .h-3 {
-  height: 0.75rem
+.filament-navigation .hidden {
+  display: none
 }
 
 .filament-navigation .h-6 {
@@ -437,67 +309,6 @@
 
 .filament-navigation .w-3 {
   width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .w-full {
-  width: 100%
-}
-
-.filament-navigation .w-3 {
-  width: 0.75rem
-}
-
-.filament-navigation .-translate-x-1\/2 {
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
 }
 
 .filament-navigation .-translate-y-1\/2 {
@@ -509,10 +320,6 @@
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none
-}
-
-.filament-navigation .items-center {
-  align-items: center
 }
 
 .filament-navigation .justify-end {
@@ -537,62 +344,6 @@
 
 .filament-navigation .rounded-lg {
   border-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
-}
-
-.filament-navigation .rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem
-}
-
-.filament-navigation .rounded-tr-lg {
-  border-top-right-radius: 0.5rem
 }
 
 .filament-navigation .rounded-bl-lg {
@@ -711,82 +462,6 @@
   border-left-width: 1px
 }
 
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-b {
-  border-bottom-width: 1px
-}
-
-.filament-navigation .border-l {
-  border-left-width: 1px
-}
-
-.filament-navigation .border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity))
-}
-
-.filament-navigation .border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity))
-}
-
-.filament-navigation .border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity))
-}
-
-.filament-navigation .border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity))
-}
-
 .filament-navigation .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity))
@@ -799,76 +474,6 @@
 
 .filament-navigation .p-1 {
   padding: 0.25rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
-}
-
-.filament-navigation .px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem
-}
-
-.filament-navigation .py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem
 }
 
 .filament-navigation .px-3 {
@@ -954,11 +559,6 @@
   line-height: 1rem
 }
 
-.filament-navigation .text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity))
-}
-
 .filament-navigation .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity))
@@ -1029,14 +629,20 @@
   color: rgb(107 114 128 / var(--tw-text-opacity))
 }
 
-.filament-navigation .text-gray-400 {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity))
+.filament-navigation .opacity-0 {
+  opacity: 0
 }
 
-.filament-navigation .text-gray-500 {
-  --tw-text-opacity: 1;
-  color: rgb(107 114 128 / var(--tw-text-opacity))
+.filament-navigation .transition {
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms
+}
+
+.filament-navigation .ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
 }
 
 .filament-navigation .hover\:text-gray-900:hover {
@@ -1044,60 +650,16 @@
   color: rgb(17 24 39 / var(--tw-text-opacity))
 }
 
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
+.filament-navigation .group:hover .group-hover\:block {
+  display: block
 }
 
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
+.filament-navigation .group:hover .group-hover\:flex {
+  display: flex
 }
 
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
-}
-
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
-}
-
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
-}
-
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
-}
-
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
-}
-
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:right-auto {
-  right: auto
-}
-
-.filament-navigation [dir="rtl"] .rtl\:left-0 {
-  left: 0px
+.filament-navigation .group:hover .group-hover\:opacity-100 {
+  opacity: 1
 }
 
 .filament-navigation [dir="rtl"] .rtl\:right-auto {
@@ -1266,174 +828,6 @@
 
 .filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
   border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-bl-none {
-  border-bottom-left-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-br-lg {
-  border-bottom-right-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tr-none {
-  border-top-right-radius: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:rounded-tl-lg {
-  border-top-left-radius: 0.5rem
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-l-0 {
-  border-left-width: 0px
-}
-
-.filament-navigation [dir="rtl"] .rtl\:border-r {
-  border-right-width: 1px
 }
 
 .filament-navigation [dir="rtl"] .rtl\:border-l-0 {

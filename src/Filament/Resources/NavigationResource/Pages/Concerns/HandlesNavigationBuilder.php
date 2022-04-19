@@ -2,13 +2,17 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns;
 
+use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Filament\Pages\Actions\Action;
 use Filament\Forms\Components\Select;
 
 use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\TextInput;
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+
 use function Filament\Forms\array_move_after;
 use function Filament\Forms\array_move_before;
 
@@ -138,16 +142,20 @@ trait HandlesNavigationBuilder
                 ->form([
                     TextInput::make('label')
                         ->required(),
-                    TextInput::make('url')
-                        ->label('URL')
-                        ->required(),
-                    Select::make('target')
-                        ->default('')
-                        ->options([
-                            '' => 'Same tab',
-                            '_blank' => 'New tab',
-                        ])
-                        ->nullable(),
+                    Select::make('type')
+                        ->options(function () {
+                            $types = FilamentNavigation::getItemTypes();
+
+                            return array_combine(array_keys($types), array_keys($types));
+                        })
+                        ->reactive(),
+                    Group::make()
+                        ->statePath('data')
+                        ->schema(function (Closure $get) {
+                            $type = $get('type');
+
+                            return FilamentNavigation::getItemTypes()[$type]['fields'] ?? [];
+                        })
                 ])
                 ->modalWidth('md')
                 ->action(function (array $data) {

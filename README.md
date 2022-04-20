@@ -15,6 +15,12 @@ Begin by installing this package via Composer:
 composer require ryangjchandler/filament-navigation
 ```
 
+Publish the package's assets:
+
+```sh
+php artisan vendor:publish --tag="filament-navigation-assets"
+```
+
 ## Usage
 
 The `NavigationResource` is automatically registered with Filament so no configuration is required to start using it.

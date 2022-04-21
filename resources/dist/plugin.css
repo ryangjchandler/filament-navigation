@@ -84,28 +84,12 @@
   display: none
 }
 
-.filament-navigation .h-2 {
-  height: 0.5rem
-}
-
 .filament-navigation .h-6 {
   height: 1.5rem
 }
 
 .filament-navigation .h-3 {
   height: 0.75rem
-}
-
-.filament-navigation .h-1 {
-  height: 0.25rem
-}
-
-.filament-navigation .h-5 {
-  height: 1.25rem
-}
-
-.filament-navigation .h-px {
-  height: 1px
 }
 
 .filament-navigation .w-full {
@@ -176,19 +160,9 @@
   border-color: rgb(209 213 219 / var(--tw-border-opacity))
 }
 
-.filament-navigation .bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity))
-}
-
 .filament-navigation .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
-}
-
-.filament-navigation .bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity))
 }
 
 .filament-navigation .p-1 {
@@ -298,5 +272,10 @@
   .filament-navigation .dark\:border-gray-600 {
     --tw-border-opacity: 1;
     border-color: rgb(75 85 99 / var(--tw-border-opacity))
+  }
+
+  .filament-navigation .dark\:bg-gray-700 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity))
   }
 }

@@ -14,7 +14,10 @@
             @forelse($getState() as $uuid => $item)
                 <x-filament-navigation::nav-item :statePath="$getStatePath() . '.' . $uuid" :item="$item" :moveUp="!$loop->first" :moveDown="!$loop->last" :indent="!$loop->first && $loop->count > 1" />
             @empty
-                <div class="w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left">
+                <div @class([
+                    'w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left',
+                    'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
+                ])>
                     No items.
                 </div>
             @endforelse

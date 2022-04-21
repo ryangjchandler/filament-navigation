@@ -263,19 +263,17 @@
   border-right-width: 1px
 }
 
-@media (prefers-color-scheme: dark) {
-  .filament-navigation .dark\:divide-gray-600 > :not([hidden]) ~ :not([hidden]) {
-    --tw-divide-opacity: 1;
-    border-color: rgb(75 85 99 / var(--tw-divide-opacity))
-  }
+.filament-navigation .dark .dark\:divide-gray-600 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-divide-opacity))
+}
 
-  .filament-navigation .dark\:border-gray-600 {
-    --tw-border-opacity: 1;
-    border-color: rgb(75 85 99 / var(--tw-border-opacity))
-  }
+.filament-navigation .dark .dark\:border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity))
+}
 
-  .filament-navigation .dark\:bg-gray-700 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity))
-  }
+.filament-navigation .dark .dark\:bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity))
 }

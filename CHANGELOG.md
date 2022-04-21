@@ -2,6 +2,14 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.2.1 - 2022-04-21
+
+## What's Changed
+
+- Fixes Tailwind config to use class based dark mode. by @awcodes in https://github.com/ryangjchandler/filament-navigation/pull/5
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.2.0...v0.2.1
+
 ## v0.2.0 - 2022-04-21
 
 ## What's Changed
@@ -18,6 +26,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 ```
 ## New Contributors

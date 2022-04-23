@@ -18,7 +18,7 @@ class FilamentNavigationManager
     public function addItemType(string $name, array | Closure $fields = []): static
     {
         $this->itemTypes[Str::slug($name)] = [
-            'name' => 'name',
+            'name' => $name,
             'fields' => $fields,
         ];
 

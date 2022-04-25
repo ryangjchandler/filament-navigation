@@ -2,6 +2,20 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.2.2 - 2022-04-25
+
+## What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1 by @dependabot in https://github.com/ryangjchandler/filament-navigation/pull/10
+- [FIX] showing the navigation_type name by @lordjoo in https://github.com/ryangjchandler/filament-navigation/pull/6
+
+## New Contributors
+
+- @dependabot made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/10
+- @lordjoo made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/6
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.2.1...v0.2.2
+
 ## v0.2.1 - 2022-04-21
 
 ## What's Changed
@@ -26,6 +40,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 ```

@@ -2,6 +2,18 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.2.3 - 2022-05-05
+
+## What's Changed
+
+- Avoid overlapping of tooltips by @justRau in https://github.com/ryangjchandler/filament-navigation/pull/11
+
+## New Contributors
+
+- @justRau made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/11
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.2.2...v0.2.3
+
 ## v0.2.2 - 2022-04-25
 
 ## What's Changed
@@ -40,6 +52,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

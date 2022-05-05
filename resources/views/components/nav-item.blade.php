@@ -28,7 +28,7 @@
         ])>
             <button
                 x-init
-                x-tooltip.raw="Add child"
+                x-tooltip.raw.duration.0="Add child"
                 type="button"
                 wire:click="addChild('{{ $statePath }}')"
                 class="p-1"
@@ -40,7 +40,7 @@
             @if ($moveUp)
                 <button
                     x-init
-                    x-tooltip.raw="Move up"
+                    x-tooltip.raw.duration.0="Move up"
                     type="button"
                     wire:click="moveItemUp('{{ $statePath }}')"
                     class="p-1"
@@ -53,7 +53,7 @@
             @if ($moveDown)
                 <button
                     x-init
-                    x-tooltip.raw="Move down"
+                    x-tooltip.raw.duration.0="Move down"
                     type="button"
                     wire:click="moveItemDown('{{ $statePath }}')"
                     class="p-1"
@@ -66,7 +66,7 @@
             @if ($indent)
                 <button
                     x-init
-                    x-tooltip.raw="Indent"
+                    x-tooltip.raw.duration.0="Indent"
                     type="button"
                     wire:click="indentItem('{{ $statePath }}')"
                     class="p-1"
@@ -79,7 +79,7 @@
             @if ($nested)
                 <button
                     x-init
-                    x-tooltip.raw="Dedent"
+                    x-tooltip.raw.duration.0="Dedent"
                     type="button"
                     wire:click="dedentItem('{{ $statePath }}')"
                     class="p-1"
@@ -91,7 +91,7 @@
 
             <button
                 x-init
-                x-tooltip.raw="Remove"
+                x-tooltip.raw.duration.0="Remove"
                 type="button"
                 wire:click="removeItem('{{ $statePath }}')"
                 class="p-1"

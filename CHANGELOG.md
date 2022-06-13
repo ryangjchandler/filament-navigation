@@ -2,6 +2,18 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.2.4 - 2022-06-13
+
+### What's Changed
+
+- Add type hint for  property by @flxsource in https://github.com/ryangjchandler/filament-navigation/pull/16
+
+### New Contributors
+
+- @flxsource made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/16
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.2.3...v0.2.4
+
 ## v0.2.3 - 2022-05-05
 
 ## What's Changed
@@ -52,6 +64,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $handle
+ * @property array
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */

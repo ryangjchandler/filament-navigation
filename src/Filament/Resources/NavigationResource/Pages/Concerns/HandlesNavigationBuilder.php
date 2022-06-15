@@ -133,7 +133,9 @@ trait HandlesNavigationBuilder
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
-                    $form->fill($this->mountedItemData);
+                    if ($this->mountedItem) {
+                        $form->fill($this->mountedItemData);
+                    }
                 })
                 ->view('filament-navigation::hidden-action')
                 ->form([

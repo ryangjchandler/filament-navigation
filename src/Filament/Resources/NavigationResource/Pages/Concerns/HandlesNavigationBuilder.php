@@ -8,7 +8,6 @@ use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-
 use Filament\Pages\Actions\Action;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -18,6 +17,8 @@ use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
+    public $activeLocale;
+
     public $mountedItem;
 
     public $mountedItemData = [];
@@ -146,6 +147,8 @@ trait HandlesNavigationBuilder
             ->mapWithKeys(fn (string $locale): array => [$locale => locale_get_display_name($locale, app()->getLocale())])
             ->toArray();
 
+        $this->activeLocale = Config::get('app.locale', array_keys($languages)[0]);
+
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
@@ -159,10 +162,27 @@ trait HandlesNavigationBuilder
                 ->form([
                     Select::make('activeLocale')
                         ->options($languages)
-                        ->default(array_keys($languages)[0])
-                        ->disablePlaceholderSelection(),
+                        ->default($this->activeLocale)
+                        ->disablePlaceholderSelection()
+                        ->afterStateUpdated(function (\Closure $set, $state) {
+                            $set('label', Arr::get($this->mountedItemData, 'label.' . $state, ''));
+                        })
+                        ->reactive(),
                     TextInput::make('label')
-                        ->required(),
+                        ->required()
+                        ->afterStateHydrated(function (TextInput $component, $state, \Closure $get) use ($languages) {
+                            if  (! is_array($this->mountedItemData['label'])) {
+                                Arr::set($this->mountedItemData, 'label', [
+                                    Config::get('app.locale') => Arr::get($this->mountedItemData, 'label', '')
+                                ]);
+                            }
+
+                            $component->state(Arr::get($this->mountedItemData, 'label.' . $this->activeLocale));
+                        })
+                        ->dehydrateStateUsing(function (\Closure $get, $state) {
+                            Arr::set($this->mountedItemData, 'label.' . $this->activeLocale, $state);
+                        })
+                        ->reactive(),
                     Select::make('type')
                         ->options(function () {
                             $types = FilamentNavigation::getItemTypes();

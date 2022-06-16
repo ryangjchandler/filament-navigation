@@ -2,6 +2,14 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.3.0 - 2022-06-16
+
+### What's Changed
+
+- fix: entangle-based components not working in item modal by @ryangjchandler in https://github.com/ryangjchandler/filament-navigation/pull/18
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.2.4...v0.3.0
+
 ## v0.2.4 - 2022-06-13
 
 ### What's Changed
@@ -64,6 +72,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

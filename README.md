@@ -12,7 +12,7 @@ This plugin for Filament provides a `Navigation` resource that allows to build s
 Begin by installing this package via Composer:
 
 ```sh
-composer require ryangjchandler/filament-navigation
+composer require skyraptor/filament-navigation
 ```
 
 Publish the package's assets:

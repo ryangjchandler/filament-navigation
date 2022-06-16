@@ -19,7 +19,11 @@
                 'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
             ])
         >
-            {{ $item['label'] }}
+            @if (is_array($item['label']))
+                {{  \Arr::get($item['label'], \App::getLocale()) }}
+            @else
+                {{ $item['label'] }}
+            @endif
         </button>
 
         <div @class([

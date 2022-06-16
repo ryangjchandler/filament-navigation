@@ -8,14 +8,17 @@ use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-
 use Filament\Pages\Actions\Action;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
+    public ?string $activeLocale = null;
+
     public $mountedItem;
 
     public $mountedItemData = [];
@@ -140,6 +143,12 @@ trait HandlesNavigationBuilder
 
     protected function getActions(): array
     {
+        $languages = (new Collection(Config::get('filament-navigation.supported-locales', [Config::get('app.locale', 'en')])))
+            ->mapWithKeys(fn (string $locale): array => [$locale => locale_get_display_name($locale, app()->getLocale())])
+            ->toArray();
+
+        $this->activeLocale = $this->activeLocale ?? Config::get('app.locale', array_keys($languages)[0]);
+
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
@@ -151,8 +160,33 @@ trait HandlesNavigationBuilder
                 })
                 ->view('filament-navigation::hidden-action')
                 ->form([
+                    Select::make('activeLocale')
+                        ->options($languages)
+                        ->default($this->activeLocale)
+                        ->disablePlaceholderSelection()
+                        ->afterStateUpdated(function (\Closure $set, $state, $livewire) {
+                            $this->activeLocale = $state;
+                            
+                            $value = Arr::get($this->mountedItemData, 'label.' . $state, '');
+                            $set('label', $value);
+                        })
+                        ->reactive(),
                     TextInput::make('label')
-                        ->required(),
+                        ->required()
+                        ->afterStateHydrated(function (TextInput $component, $record) use ($languages) {
+                            $path = implode('.', [$this->mountedItem, 'label']);
+                            if  (! is_array(data_get($this, $path))) {
+                                data_set($this, $path, [
+                                    $this->activeLocale => data_get($this, $path, '')
+                                ]);
+                            }
+
+                            $component->state(data_get($this, implode('.', [$path, $this->activeLocale])));
+                        })
+                        ->afterStateUpdated(function (\Closure $get, $state) {
+                            Arr::set($this->mountedItemData, 'label.' . $this->activeLocale, $state);
+                        })
+                        ->reactive(),
                     Select::make('type')
                         ->options(function () {
                             $types = FilamentNavigation::getItemTypes();
@@ -185,7 +219,10 @@ trait HandlesNavigationBuilder
                 ->modalWidth('md')
                 ->action(function (array $data) {
                     if ($this->mountedItem) {
-                        data_set($this, $this->mountedItem, array_merge(data_get($this, $this->mountedItem), $data));
+                        data_set($this, $this->mountedItem, array_merge(
+                            data_get($this, $this->mountedItem),
+                            array_merge($data, ['label' => $this->mountedItemData['label']])
+                        ));
 
                         $this->mountedItem = null;
                         $this->mountedItemData = [];

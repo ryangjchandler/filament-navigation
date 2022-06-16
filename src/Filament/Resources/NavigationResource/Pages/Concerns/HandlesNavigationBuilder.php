@@ -3,7 +3,9 @@
 namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns;
 
 use Closure;
+use Filament\Facades\Filament;
 use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -12,6 +14,8 @@ use Filament\Pages\Actions\Action;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\CreateNavigation;
+use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\EditNavigation;
 
 trait HandlesNavigationBuilder
 {
@@ -146,6 +150,18 @@ trait HandlesNavigationBuilder
                             $types = FilamentNavigation::getItemTypes();
 
                             return array_combine(array_keys($types), Arr::pluck($types, 'name'));
+                        })
+                        ->afterStateUpdated(function ($state, Select $component): void {
+                            if (! $state) return;
+
+                            // NOTE: This chunk of code is a workaround for Livewire not letting
+                            //       you entangle to non-existent array keys, which wire:model
+                            //       would normally let you do.
+                            $component
+                                ->getContainer()
+                                ->getComponent(fn (Component $component) => $component instanceof Group)
+                                ->getChildComponentContainer()
+                                ->fill();
                         })
                         ->reactive(),
                     Group::make()

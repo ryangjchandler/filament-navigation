@@ -17,7 +17,7 @@ use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
-    public $activeLocale;
+    public ?string $activeLocale = null;
 
     public $mountedItem;
 
@@ -147,7 +147,7 @@ trait HandlesNavigationBuilder
             ->mapWithKeys(fn (string $locale): array => [$locale => locale_get_display_name($locale, app()->getLocale())])
             ->toArray();
 
-        $this->activeLocale = Config::get('app.locale', array_keys($languages)[0]);
+        $this->activeLocale = $this->activeLocale ?? Config::get('app.locale', array_keys($languages)[0]);
 
         return [
             Action::make('item')
@@ -164,22 +164,26 @@ trait HandlesNavigationBuilder
                         ->options($languages)
                         ->default($this->activeLocale)
                         ->disablePlaceholderSelection()
-                        ->afterStateUpdated(function (\Closure $set, $state) {
-                            $set('label', Arr::get($this->mountedItemData, 'label.' . $state, ''));
+                        ->afterStateUpdated(function (\Closure $set, $state, $livewire) {
+                            $this->activeLocale = $state;
+                            
+                            $value = Arr::get($this->mountedItemData, 'label.' . $state, '');
+                            $set('label', $value);
                         })
                         ->reactive(),
                     TextInput::make('label')
                         ->required()
-                        ->afterStateHydrated(function (TextInput $component, $state, \Closure $get) use ($languages) {
-                            if  (! is_array($this->mountedItemData['label'])) {
-                                Arr::set($this->mountedItemData, 'label', [
-                                    Config::get('app.locale') => Arr::get($this->mountedItemData, 'label', '')
+                        ->afterStateHydrated(function (TextInput $component, $record) use ($languages) {
+                            $path = implode('.', [$this->mountedItem, 'label']);
+                            if  (! is_array(data_get($this, $path))) {
+                                data_set($this, $path, [
+                                    $this->activeLocale => data_get($this, $path, '')
                                 ]);
                             }
 
-                            $component->state(Arr::get($this->mountedItemData, 'label.' . $this->activeLocale));
+                            $component->state(data_get($this, implode('.', [$path, $this->activeLocale])));
                         })
-                        ->dehydrateStateUsing(function (\Closure $get, $state) {
+                        ->afterStateUpdated(function (\Closure $get, $state) {
                             Arr::set($this->mountedItemData, 'label.' . $this->activeLocale, $state);
                         })
                         ->reactive(),
@@ -215,7 +219,10 @@ trait HandlesNavigationBuilder
                 ->modalWidth('md')
                 ->action(function (array $data) {
                     if ($this->mountedItem) {
-                        data_set($this, $this->mountedItem, array_merge(data_get($this, $this->mountedItem), $data));
+                        data_set($this, $this->mountedItem, array_merge(
+                            data_get($this, $this->mountedItem),
+                            array_merge($data, ['label' => $this->mountedItemData['label']])
+                        ));
 
                         $this->mountedItem = null;
                         $this->mountedItemData = [];

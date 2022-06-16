@@ -11,14 +11,13 @@ use Filament\Forms\Components\TextInput;
 
 use Filament\Pages\Actions\Action;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
-    public $activeLocale;
-    
     public $mountedItem;
 
     public $mountedItemData = [];
@@ -143,6 +142,10 @@ trait HandlesNavigationBuilder
 
     protected function getActions(): array
     {
+        $languages = (new Collection(Config::get('filament-navigation.supported-locales', [Config::get('app.locale', 'en')])))
+            ->mapWithKeys(fn (string $locale): array => [$locale => locale_get_display_name($locale, app()->getLocale())])
+            ->toArray();
+
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
@@ -155,7 +158,9 @@ trait HandlesNavigationBuilder
                 ->view('filament-navigation::hidden-action')
                 ->form([
                     Select::make('activeLocale')
-                        ->options(Config::get('filament-navigation.supported-locales', [Config::get('app.locale', 'en')])),
+                        ->options($languages)
+                        ->default(array_keys($languages)[0])
+                        ->disablePlaceholderSelection(),
                     TextInput::make('label')
                         ->required(),
                     Select::make('type')

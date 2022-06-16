@@ -16,6 +16,8 @@ use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
+    public $activeLocale;
+    
     public $mountedItem;
 
     public $mountedItemData = [];

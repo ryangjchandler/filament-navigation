@@ -166,7 +166,7 @@ trait HandlesNavigationBuilder
                         ->disablePlaceholderSelection()
                         ->afterStateUpdated(function (\Closure $set, $state, $livewire) {
                             $this->activeLocale = $state;
-                            
+
                             $value = Arr::get($this->mountedItemData, 'label.' . $state, '');
                             $set('label', $value);
                         })
@@ -175,9 +175,9 @@ trait HandlesNavigationBuilder
                         ->required()
                         ->afterStateHydrated(function (TextInput $component, $record) use ($languages) {
                             $path = implode('.', [$this->mountedItem, 'label']);
-                            if  (! is_array(data_get($this, $path))) {
+                            if (! is_array(data_get($this, $path))) {
                                 data_set($this, $path, [
-                                    $this->activeLocale => data_get($this, $path, '')
+                                    $this->activeLocale => data_get($this, $path, ''),
                                 ]);
                             }
 

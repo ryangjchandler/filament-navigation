@@ -1,9 +1,9 @@
 # Build structured navigation menus in Filament.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/ryangjchandler/filament-navigation.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-navigation)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/ryangjchandler/filament-navigation/run-tests?label=tests)](https://github.com/ryangjchandler/filament-navigation/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ryangjchandler/filament-navigation/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ryangjchandler/filament-navigation/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/ryangjchandler/filament-navigation.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-navigation)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/skyraptor/filament-navigation.svg?style=flat-square)](https://packagist.org/packages/skyraptor/filament-navigation)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/bumbummen99/filament-navigation/run-tests?label=tests)](https://github.com/bumbummen99/filament-navigation/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/bumbummen99/filament-navigation/Check%20&%20fix%20styling?label=code%20style)](https://github.com/bumbummen99/filament-navigation/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/skyraptor/filament-navigation.svg?style=flat-square)](https://packagist.org/packages/skyraptor/filament-navigation)
 
 This is a fork of [FilamentNavigation](https://github.com/ryangjchandler/filament-navigation) extended with translation support.
 

@@ -151,6 +151,8 @@ trait HandlesNavigationBuilder
                 })
                 ->view('filament-navigation::hidden-action')
                 ->form([
+                    Select::make('activeLocale')
+                        ->options(Config::get('filament-navigation.supported-locales')),
                     TextInput::make('label')
                         ->required(),
                     Select::make('type')

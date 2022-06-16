@@ -13,6 +13,14 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
     protected array $resources = [
         NavigationResource::class,
     ];
+    
+    protected array $scripts = [
+        'alpine-tooltip' => 'https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-tooltip@1.x.x/dist/cdn.min.js',
+    ];
+    
+    protected array styles = [
+        'alpine-tooltip' => 'https://unpkg.com/tippy.js@6/dist/tippy.css',
+    ];
 
     protected function getStyles(): array
     {

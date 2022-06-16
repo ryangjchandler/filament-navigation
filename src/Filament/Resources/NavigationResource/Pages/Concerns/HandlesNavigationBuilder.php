@@ -132,14 +132,25 @@ trait HandlesNavigationBuilder
         $this->mountAction('item');
     }
 
+    public function createItem()
+    {
+        $this->mountedItem = null;
+        $this->mountedItemData = [];
+        $this->mountedActionData = [];
+
+        $this->mountAction('item');
+    }
+
     protected function getActions(): array
     {
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
-                    if ($this->mountedItem) {
-                        $form->fill($this->mountedItemData);
+                    if (! $this->mountedItem) {
+                        return;
                     }
+
+                    $form->fill($this->mountedItemData);
                 })
                 ->view('filament-navigation::hidden-action')
                 ->form([
@@ -196,6 +207,8 @@ trait HandlesNavigationBuilder
                             ...['children' => []],
                         ];
                     }
+
+                    $this->mountedActionData = [];
                 })
                 ->modalButton('Save')
                 ->label('Item'),

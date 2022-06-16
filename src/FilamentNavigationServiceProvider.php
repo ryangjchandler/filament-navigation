@@ -18,7 +18,7 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
         'alpine-tooltip' => 'https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-tooltip@1.x.x/dist/cdn.min.js',
     ];
     
-    protected array styles = [
+    protected array $styles = [
         'alpine-tooltip' => 'https://unpkg.com/tippy.js@6/dist/tippy.css',
     ];
 

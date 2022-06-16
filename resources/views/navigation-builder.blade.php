@@ -25,7 +25,7 @@
     </div>
 
     <div class="flex justify-end">
-        <x-filament::button wire:click="mountAction('item')" type="button" size="sm" color="secondary">
+        <x-filament::button wire:click="createItem" type="button" size="sm" color="secondary">
             Add Item
         </x-filament::button>
     </div>

@@ -4,6 +4,7 @@ namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\
 
 use Closure;
 use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -128,11 +129,24 @@ trait HandlesNavigationBuilder
         $this->mountAction('item');
     }
 
+    public function createItem()
+    {
+        $this->mountedItem = null;
+        $this->mountedItemData = [];
+        $this->mountedActionData = [];
+
+        $this->mountAction('item');
+    }
+
     protected function getActions(): array
     {
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
+                    if (! $this->mountedItem) {
+                        return;
+                    }
+
                     $form->fill($this->mountedItemData);
                 })
                 ->view('filament-navigation::hidden-action')
@@ -144,6 +158,20 @@ trait HandlesNavigationBuilder
                             $types = FilamentNavigation::getItemTypes();
 
                             return array_combine(array_keys($types), Arr::pluck($types, 'name'));
+                        })
+                        ->afterStateUpdated(function ($state, Select $component): void {
+                            if (! $state) {
+                                return;
+                            }
+
+                            // NOTE: This chunk of code is a workaround for Livewire not letting
+                            //       you entangle to non-existent array keys, which wire:model
+                            //       would normally let you do.
+                            $component
+                                ->getContainer()
+                                ->getComponent(fn (Component $component) => $component instanceof Group)
+                                ->getChildComponentContainer()
+                                ->fill();
                         })
                         ->reactive(),
                     Group::make()
@@ -178,6 +206,8 @@ trait HandlesNavigationBuilder
                             ...['children' => []],
                         ];
                     }
+
+                    $this->mountedActionData = [];
                 })
                 ->modalButton('Save')
                 ->label('Item'),

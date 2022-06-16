@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.1",
         "doctrine/dbal": "^3.3",
-        "filament/filament": "^2.0",
+        "filament/filament": "^2.10.34",
         "illuminate/contracts": "^9.0",
         "spatie/laravel-package-tools": "^1.9.2"
     },

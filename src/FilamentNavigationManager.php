@@ -34,7 +34,7 @@ class FilamentNavigationManager
     {
         return array_merge([
             'external-link' => [
-                'name' => 'External link',
+                'name' => __('filament-navigation::filament-navigation.attributes.external-link'),
                 'fields' => [
                     TextInput::make('url')
                         ->label('URL')

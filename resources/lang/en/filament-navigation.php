@@ -10,5 +10,16 @@ return [
     'select-options' => [
         'same-tab' => 'Same tab',
         'new-tab' => 'New tab'
+    ],
+
+    'items' => [
+        'empty' => 'No items.',
+        'add-item' => 'Add item',
+        'add-child' => 'Add child',
+        'move-up' => 'Move up',
+        'move-down' => 'Move down',
+        'indent' => 'Indent',
+        'dedent' => 'Dedent',
+        'remove' => 'Remove'
     ]
 ];

@@ -2,6 +2,6 @@
 
 return [
     'attributes' => [
-        'external-link' => 'external-link'
-     ];
+        'external-link' => 'External link'
+     ]
 ];

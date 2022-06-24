@@ -21,5 +21,12 @@ return [
         'indent' => 'Indent',
         'dedent' => 'Dedent',
         'remove' => 'Remove'
-    ]
+    ],
+
+    'items-modal' => [
+        'title' => 'Item',
+        'label' => 'Label',
+        'type' => 'Type',
+        'btn' => 'Save',
+    ],
 ];

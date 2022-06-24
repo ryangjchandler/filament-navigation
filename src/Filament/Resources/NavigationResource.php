@@ -25,7 +25,7 @@ class NavigationResource extends Resource
 
     protected static bool $showTimestamps = true;
     
-    private statict ?string $workNavigationLabel = "";
+    private static ?string $workNavigationLabel = "";
 
     public static function disableTimestamps(bool $condition = true): void
     {

@@ -75,6 +75,16 @@ class NavigationResource extends Resource
             ])
             ->columns(12);
     }
+    
+    public static function navigationLabel(?string $string): void
+    {
+        static::$workNavigationLabel = $string;
+    }
+
+    protected static function getNavigationLabel(): string
+    {
+        return static::$workNavigationLabel;
+    }
 
     public static function table(Table $table): Table
     {

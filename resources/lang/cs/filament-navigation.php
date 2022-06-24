@@ -7,7 +7,7 @@ return [
         'target' => 'Cíl',
         'name' => 'Název',
         'items' => 'Položky',
-        'handle' => 'ID',
+        'handle' => 'Identifikátor',
         'created_at' => 'Vytvořeno',
         'updated_at' => 'Upraveno',
      ],
@@ -20,10 +20,10 @@ return [
     'items' => [
         'empty' => 'Žádné položky',
         'add-item' => 'Přidat položku',
-        'add-child' => 'Přidat dítě',
+        'add-child' => 'Přidat pod-položku',
         'move-up' => 'Posunout nahoru',
         'move-down' => 'Posunout dolu',
-        'indent' => 'Přidělit',
+        'indent' => 'Přidružit',
         'dedent' => 'Oddělit',
         'remove' => 'Odstranit'
     ],

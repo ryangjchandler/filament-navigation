@@ -24,7 +24,7 @@ class NavigationResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-menu';
 
     protected static bool $showTimestamps = true;
-    
+
     private static ?string $workNavigationLabel = "";
 
     public static function disableTimestamps(bool $condition = true): void
@@ -38,6 +38,7 @@ class NavigationResource extends Resource
             ->schema([
                 Card::make([
                     TextInput::make('name')
+                        ->label(__('filament-navigation::filament-navigation.attributes.name'))
                         ->reactive()
                         ->afterStateUpdated(function (?string $state, Closure $set) {
                             if (! $state) {
@@ -48,6 +49,7 @@ class NavigationResource extends Resource
                         })
                         ->required(),
                     ViewField::make('items')
+                        ->label(__('filament-navigation::filament-navigation.attributes.items'))
                         ->default([])
                         ->view('filament-navigation::navigation-builder'),
                 ])
@@ -58,14 +60,17 @@ class NavigationResource extends Resource
                 Group::make([
                     Card::make([
                         TextInput::make('handle')
+                            ->label(__('filament-navigation::filament-navigation.attributes.handle'))
                             ->required()
                             ->unique(column: 'handle', ignoreRecord: true),
                         View::make('filament-navigation::card-divider')
                             ->visible(static::$showTimestamps),
                         Placeholder::make('created_at')
+                            ->label(__('filament-navigation::filament-navigation.attributes.created_at'))
                             ->visible(static::$showTimestamps)
                             ->content(fn (?Navigation $record) => $record ? $record->created_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
                         Placeholder::make('updated_at')
+                            ->label(__('filament-navigation::filament-navigation.attributes.updated_at'))
                             ->visible(static::$showTimestamps)
                             ->content(fn (?Navigation $record) => $record ? $record->updated_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
                     ]),
@@ -77,7 +82,7 @@ class NavigationResource extends Resource
             ])
             ->columns(12);
     }
-    
+
     public static function navigationLabel(?string $string): void
     {
         static::$workNavigationLabel = $string;
@@ -93,13 +98,17 @@ class NavigationResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('filament-navigation::filament-navigation.attributes.name'))
                     ->searchable(),
                 TextColumn::make('handle')
+                    ->label(__('filament-navigation::filament-navigation.attributes.handle'))
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament-navigation::filament-navigation.attributes.created_at'))
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-navigation::filament-navigation.attributes.updated_at'))
                     ->dateTime()
                     ->sortable(),
             ])

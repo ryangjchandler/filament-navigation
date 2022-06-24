@@ -24,6 +24,8 @@ class NavigationResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-menu';
 
     protected static bool $showTimestamps = true;
+    
+    private statict ?string $workNavigationLabel = "";
 
     public static function disableTimestamps(bool $condition = true): void
     {

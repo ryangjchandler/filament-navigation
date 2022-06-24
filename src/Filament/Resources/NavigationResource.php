@@ -25,7 +25,11 @@ class NavigationResource extends Resource
 
     protected static bool $showTimestamps = true;
 
-    private static ?string $workNavigationLabel = "";
+    private static ?string $workNavigationLabel = null;
+
+    private static ?string $workPluralLabel = null;
+
+    private static ?string $workLabel = null;
 
     public static function disableTimestamps(bool $condition = true): void
     {
@@ -88,9 +92,29 @@ class NavigationResource extends Resource
         static::$workNavigationLabel = $string;
     }
 
+    public static function pluralLabel(?string $string): void
+    {
+        static::$workPluralLabel = $string;
+    }
+
+    public static function label(?string $string): void
+    {
+        static::$workLabel = $string;
+    }
+
     protected static function getNavigationLabel(): string
     {
-        return static::$workNavigationLabel;
+        return static::$workNavigationLabel ?? parent::getNavigationLabel();
+    }
+
+    public static function getLabel(): ?string
+    {
+        return static::$workLabel ?? parent::getLabel();
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return static::$workPluralLabel ?? parent::getPluralLabel();
     }
 
     public static function table(Table $table): Table

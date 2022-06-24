@@ -72,11 +72,11 @@ class NavigationResource extends Resource
                         Placeholder::make('created_at')
                             ->label(__('filament-navigation::filament-navigation.attributes.created_at'))
                             ->visible(static::$showTimestamps)
-                            ->content(fn (?Navigation $record) => $record ? $record->created_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
+                            ->content(fn (?Navigation $record) => $record ? $record->created_at->translatedFormat(config('tables.date_time_format')) : new HtmlString('&mdash;')),
                         Placeholder::make('updated_at')
                             ->label(__('filament-navigation::filament-navigation.attributes.updated_at'))
                             ->visible(static::$showTimestamps)
-                            ->content(fn (?Navigation $record) => $record ? $record->updated_at->format(config('tables.date_time_format')) : new HtmlString('&mdash;')),
+                            ->content(fn (?Navigation $record) => $record ? $record->updated_at->translatedFormat(config('tables.date_time_format')) : new HtmlString('&mdash;')),
                     ]),
                 ])
                     ->columnSpan([

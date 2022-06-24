@@ -1,17 +1,22 @@
 {
-    "name": "ryangjchandler/filament-navigation",
+    "name": "skyraptor/filament-navigation",
     "description": "Build structured navigation menus in Filament.",
     "keywords": [
         "ryangjchandler",
         "laravel",
         "filament-navigation"
     ],
-    "homepage": "https://github.com/ryangjchandler/filament-navigation",
+    "homepage": "https://github.com/bumbummen99/filament-navigation",
     "license": "MIT",
     "authors": [
         {
             "name": "Ryan Chandler",
             "email": "support@ryangjchandler.co.uk",
+            "role": "Developer"
+        },
+        {
+            "name": "Patrick Henninger",
+            "email": "privat@skyraptor.eu",
             "role": "Developer"
         }
     ],

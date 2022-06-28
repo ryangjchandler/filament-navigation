@@ -61,7 +61,7 @@ The recursive structure makes it really simple to render nested menus / dropdown
                 <ul>
                     {{-- Render the item's children here... --}}
                 </ul>
-            @endforeach
+            @endif
         </li>
     @endforeach
 </ul>
@@ -69,7 +69,7 @@ The recursive structure makes it really simple to render nested menus / dropdown
 
 ### Retrieving a navigation object
 
-To retreive a navigation object, provide the handle to the `RyanChandler\FilamentNavigation\Facades\FilamentNavigation::get()` method.
+To retrieve a navigation object, provide the handle to the `RyanChandler\FilamentNavigation\Facades\FilamentNavigation::get()` method.
 
 ```php
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;

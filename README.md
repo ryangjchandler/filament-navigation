@@ -15,6 +15,26 @@ Begin by installing this package via Composer:
 composer require ryangjchandler/filament-navigation
 ```
 
+As this plugin support classical or Orbit database driver, you have to choose one of both.
+
+If you want to use classical databse driver like MySQL, Postgresql etc. :
+
+```sh
+php artisan vendor:publish --tag="filament-navigation-model-classical" --force
+```
+
+If you prefer to use Orbit :
+
+```sh
+php artisan vendor:publish --tag="filament-navigation-model-with-orbit" --force
+```
+
+Or course, don't forget to install Orbit : 
+
+```sh
+composer require ryangjchandler/orbit
+```
+
 Publish the package's assets:
 
 ```sh

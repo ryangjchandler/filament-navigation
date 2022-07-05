@@ -152,8 +152,10 @@ trait HandlesNavigationBuilder
                 ->view('filament-navigation::hidden-action')
                 ->form([
                     TextInput::make('label')
+                        ->label(__('filament-navigation::filament-navigation.items-modal.label'))
                         ->required(),
                     Select::make('type')
+                        ->label(__('filament-navigation::filament-navigation.items-modal.label'))
                         ->options(function () {
                             $types = FilamentNavigation::getItemTypes();
 
@@ -209,8 +211,8 @@ trait HandlesNavigationBuilder
 
                     $this->mountedActionData = [];
                 })
-                ->modalButton('Save')
-                ->label('Item'),
+                ->modalButton(__('filament-navigation::filament-navigation.items-modal.btn'))
+                ->label(__('filament-navigation::filament-navigation.items-modal.title')),
         ];
     }
 }

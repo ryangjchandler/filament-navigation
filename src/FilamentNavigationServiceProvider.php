@@ -41,4 +41,18 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
 
         parent::packageBooted();
     }
+
+    public function boot()
+    {
+        parent::boot();
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/Models/Orbit/Navigation.php' => 'app/Models/Navigation.php',
+            ], 'filament-navigation-model-with-orbit');
+            $this->publishes([
+                __DIR__ . '/Models/Classical/Navigation.php' => 'app/Models/Navigation.php',
+            ], 'filament-navigation-model-classical');
+        }
+    }
 }

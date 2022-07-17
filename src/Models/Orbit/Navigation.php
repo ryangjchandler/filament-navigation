@@ -10,15 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 class Navigation extends Model
 {
     use Orbital;
-
-    public static $driver = 'json';
-
     use HasFactory;
 
-    public static function enableOrbit(): bool
-    {
-        return config('filament-navigation.db_engine') == 'orbit' ? true : false;
-    }
+    public static $driver = 'json';
 
     public static function schema(Blueprint $table)
     {
@@ -26,9 +20,6 @@ class Navigation extends Model
         $table->string('name');
         $table->string('handle')->unique();
         $table->longText('items')->nullable();
-        if (config('filament-navigation.db_engine' == 'classical')) {
-            $table->timestamps();
-        }
     }
 
     /**
@@ -49,6 +40,7 @@ class Navigation extends Model
      */
     protected $hidden = [
     ];
+
 
     /**
      * The attributes that should be cast.

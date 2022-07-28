@@ -15,7 +15,7 @@ Begin by installing this package via Composer:
 composer require ryangjchandler/filament-navigation
 ```
 
-Run Migration
+Run Migration:
 
 ```sh
 php artisan migrate

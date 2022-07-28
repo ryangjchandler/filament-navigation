@@ -15,6 +15,12 @@ Begin by installing this package via Composer:
 composer require ryangjchandler/filament-navigation
 ```
 
+Run Migration
+
+```sh
+php artisan migrate
+```
+
 Publish the package's assets:
 
 ```sh

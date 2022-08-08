@@ -10,16 +10,41 @@
                 &ndash;
             </span>
         @endif
-
         <button
             type="button"
             wire:click="editItem('{{ $statePath }}')"
             @class([
-                'appearance-none w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left',
+                'appearance-none w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left flex',
                 'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
             ])
         >
-            {{ $item['label'] }}
+            <div>
+                {{ $item['label'] }}
+            </div>
+            @if (config('filament-navigation.show_linked_resource'))
+                <div class="text-right flex-1">
+                    <span
+                        @class([
+                            'inline-flex items-center justify-center ml-auto rtl:ml-0 rtl:mr-auto min-h-4 px-2 py-0.5 text-xs font-medium tracking-tight rounded-xl whitespace-normal text-primary-700 bg-primary-500/10',
+                            'dark:bg-gray-700 dark:border-gray-600 dark:text-white' => config('filament.dark_mode'),
+                        ])
+                    >
+                        {{ $this->navigationResources[$item['type']]['name'] ?? $item['type'] }}
+                    </span>
+                    <span
+                        @class([
+                            'inline-flex items-center justify-center ml-auto rtl:ml-0 rtl:mr-auto min-h-4 px-2 py-0.5 text-xs font-medium tracking-tight rounded-xl whitespace-normal text-primary-700 bg-primary-500/10',
+                            'dark:bg-gray-700 dark:border-gray-600 dark:text-white' => config('filament.dark_mode'),
+                        ])
+                    >
+                        @if ($item['type']==="external-link")
+                            URL: {{ $item['data']['url'] }} ({{ ($item['data']['target']==="_blank"?'new':'same') }} tab)
+                        @elseif (isset($item['data']['key']))
+                            ID: {{ $item['data']['key'] }}
+                        @endif
+                    </span>
+                </div>
+            @endif
         </button>
 
         <div @class([

@@ -52,3 +52,45 @@ it('can create a navigation menu with items', function () {
                     ])
             );
 });
+
+it('can create a navigation menu with items and show its linked resource when option in config is true', function () {
+
+    config(['filament-navigation.show_linked_resource' => true]);
+
+    Livewire::test(CreateNavigation::class)
+        ->set('data.name', 'Foo')
+        ->call('mountAction', 'item')
+        ->set('mountedActionData', [
+            'label' => 'Baz',
+            'type' => 'external-link',
+            'data' => [
+                'url' => '/baz',
+            ],
+        ])
+        ->call('callMountedAction')
+        ->call('create')
+        ->assertSee(['External link', 'URL: /baz'])
+        ->assertHasNoErrors()
+        ->assertSuccessful();
+});
+
+it('can create a navigation menu with items and dont show its linked resource when option in config is false', function () {
+
+    config(['filament-navigation.show_linked_resource' => false]);
+
+    Livewire::test(CreateNavigation::class)
+        ->set('data.name', 'Foo')
+        ->call('mountAction', 'item')
+        ->set('mountedActionData', [
+            'label' => 'Baz',
+            'type' => 'external-link',
+            'data' => [
+                'url' => '/baz',
+            ],
+        ])
+        ->call('callMountedAction')
+        ->call('create')
+        ->assertDontSee(['External link', 'URL: /baz'])
+        ->assertHasNoErrors()
+        ->assertSuccessful();
+});

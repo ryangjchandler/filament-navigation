@@ -29,7 +29,7 @@
                             'dark:bg-gray-700 dark:border-gray-600 dark:text-white' => config('filament.dark_mode'),
                         ])
                     >
-                        {{ $this->navigationResources[$item['type']]['name'] ?? $item['type'] }}
+                        {{ \RyanChandler\FilamentNavigation\Facades\FilamentNavigation::getItemTypes()[$item['type']]['name'] ?? $item['type'] }}
                     </span>
                     <span
                         @class([
@@ -39,8 +39,12 @@
                     >
                         @if ($item['type']==="external-link")
                             {{__('filament-navigation::filament-navigation.items.resource-url')}} {{ $item['data']['url'] }} {{__('filament-navigation::filament-navigation.items.resource-url-tab', ['name' => ($item['data']['target']==="_blank"?__('filament-navigation::filament-navigation.items.resource-url-tab-new'):__('filament-navigation::filament-navigation.items.resource-url-tab-same')) ])}}
-                        @elseif (isset($item['data']['key']))
-                            {{__('filament-navigation::filament-navigation.items.resource-id') }} {{ $item['data']['key'] }}
+                        @else
+                            @foreach (\RyanChandler\FilamentNavigation\Facades\FilamentNavigation::getItemTypes()[$item['type']]['fields'] as $field)
+                                @if ($field instanceof \Filament\Forms\Components\Select)
+                                    {{__('filament-navigation::filament-navigation.items.resource-id') }} {{ $item['data'][$field->getName()] }}
+                                @endif
+                            @endforeach
                         @endif
                     </span>
                 </div>

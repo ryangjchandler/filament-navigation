@@ -69,7 +69,7 @@ it('can create a navigation menu with items and show its linked resource when op
         ])
         ->call('callMountedAction')
         ->call('create')
-        ->assertSee(['External link', 'URL: /baz'])
+        ->assertSee([__('filament-navigation::filament-navigation.attributes.external-link'), __('filament-navigation::filament-navigation.items.resource-url') . ' /baz'])
         ->assertHasNoErrors()
         ->assertSuccessful();
 });
@@ -90,7 +90,7 @@ it('can create a navigation menu with items and dont show its linked resource wh
         ])
         ->call('callMountedAction')
         ->call('create')
-        ->assertDontSee(['External link', 'URL: /baz'])
+        ->assertDontSee([__('filament-navigation::filament-navigation.attributes.external-link'), __('filament-navigation::filament-navigation.items.resource-url') . ' /baz'])
         ->assertHasNoErrors()
         ->assertSuccessful();
 });

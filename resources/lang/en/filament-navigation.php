@@ -27,11 +27,11 @@ return [
         'indent' => 'Indent',
         'dedent' => 'Dedent',
         'remove' => 'Remove',
-        'resource-url' => 'URL: ',
+        'resource-url' => 'URL:',
         'resource-url-tab' => '(:name tab)',
         'resource-url-tab-new' => 'new',
         'resource-url-tab-same' => 'same',
-        'resource-id' => 'ID: ',
+        'resource-id' => 'ID:',
     ],
 
     'items-modal' => [

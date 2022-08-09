@@ -34,15 +34,16 @@ class FilamentNavigationManager
     {
         return array_merge([
             'external-link' => [
-                'name' => 'External link',
+                'name' => __('filament-navigation::filament-navigation.attributes.external-link'),
                 'fields' => [
                     TextInput::make('url')
-                        ->label('URL')
+                        ->label(__('filament-navigation::filament-navigation.attributes.url'))
                         ->required(),
                     Select::make('target')
+                        ->label(__('filament-navigation::filament-navigation.attributes.target'))
                         ->options([
-                            '' => 'Same tab',
-                            '_blank' => 'New tab',
+                            '' => __('filament-navigation::filament-navigation.select-options.same-tab'),
+                            '_blank' => __('filament-navigation::filament-navigation.select-options.new-tab'),
                         ])
                         ->default(''),
                 ],

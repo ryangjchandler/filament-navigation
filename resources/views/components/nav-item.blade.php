@@ -53,11 +53,11 @@
         ])>
             <button
                 x-init
-                x-tooltip.raw.duration.0="Add child"
+                x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.add-child')}}"
                 type="button"
                 wire:click="addChild('{{ $statePath }}')"
                 class="p-1"
-                title="Add child"
+                title="{{__('filament-navigation::filament-navigation.items.add-child')}}"
             >
                 <x-heroicon-o-plus class="w-3 h-3 text-gray-500 hover:text-gray-900" />
             </button>
@@ -65,11 +65,11 @@
             @if ($moveUp)
                 <button
                     x-init
-                    x-tooltip.raw.duration.0="Move up"
+                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.move-up')}}"
                     type="button"
                     wire:click="moveItemUp('{{ $statePath }}')"
                     class="p-1"
-                    title="Move up"
+                    title="{{__('filament-navigation::filament-navigation.items.move-up')}}"
                 >
                     <x-heroicon-o-arrow-up class="w-3 h-3 text-gray-500 hover:text-gray-900" />
                 </button>
@@ -78,11 +78,11 @@
             @if ($moveDown)
                 <button
                     x-init
-                    x-tooltip.raw.duration.0="Move down"
+                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.move-down')}}"
                     type="button"
                     wire:click="moveItemDown('{{ $statePath }}')"
                     class="p-1"
-                    title="Move down"
+                    title="{{__('filament-navigation::filament-navigation.items.move-up')}}"
                 >
                     <x-heroicon-o-arrow-down class="w-3 h-3 text-gray-500 hover:text-gray-900" />
                 </button>
@@ -91,11 +91,11 @@
             @if ($indent)
                 <button
                     x-init
-                    x-tooltip.raw.duration.0="Indent"
+                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.indent')}}"
                     type="button"
                     wire:click="indentItem('{{ $statePath }}')"
                     class="p-1"
-                    title="Indent"
+                    title="{{__('filament-navigation::filament-navigation.items.indent')}}"
                 >
                     <x-heroicon-o-arrow-right class="w-3 h-3 text-gray-500 hover:text-gray-900" />
                 </button>
@@ -104,11 +104,11 @@
             @if ($nested)
                 <button
                     x-init
-                    x-tooltip.raw.duration.0="Dedent"
+                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.dedent')}}"
                     type="button"
                     wire:click="dedentItem('{{ $statePath }}')"
                     class="p-1"
-                    title="Dedent"
+                    title="{{__('filament-navigation::filament-navigation.items.dedent')}}"
                 >
                     <x-heroicon-o-arrow-left class="w-3 h-3 text-gray-500 hover:text-gray-900" />
                 </button>
@@ -116,11 +116,11 @@
 
             <button
                 x-init
-                x-tooltip.raw.duration.0="Remove"
+                x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.remove')}}"
                 type="button"
                 wire:click="removeItem('{{ $statePath }}')"
                 class="p-1"
-                title="Remove"
+                title="{{__('filament-navigation::filament-navigation.items.remove')}}"
             >
                 <x-heroicon-o-trash class="w-3 h-3 text-danger-500 hover:text-danger-900" />
             </button>

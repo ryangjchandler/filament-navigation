@@ -26,7 +26,12 @@ return [
         'move-down' => 'Move down',
         'indent' => 'Indent',
         'dedent' => 'Dedent',
-        'remove' => 'Remove'
+        'remove' => 'Remove',
+        'resource-url' => 'URL: ',
+        'resource-url-tab' => '(:name tab)',
+        'resource-url-tab-new' => 'new',
+        'resource-url-tab-same' => 'same',
+        'resource-id' => 'ID: ',
     ],
 
     'items-modal' => [

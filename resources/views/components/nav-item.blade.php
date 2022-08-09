@@ -38,9 +38,9 @@
                         ])
                     >
                         @if ($item['type']==="external-link")
-                            URL: {{ $item['data']['url'] }} ({{ ($item['data']['target']==="_blank"?'new':'same') }} tab)
+                            {{__('filament-navigation::filament-navigation.items.resource-url')}} {{ $item['data']['url'] }} {{__('filament-navigation::filament-navigation.items.resource-url-tab', ['name' => ($item['data']['target']==="_blank"?__('filament-navigation::filament-navigation.items.resource-url-tab-new'):__('filament-navigation::filament-navigation.items.resource-url-tab-same')) ])}}
                         @elseif (isset($item['data']['key']))
-                            ID: {{ $item['data']['key'] }}
+                            {{__('filament-navigation::filament-navigation.items.resource-id') }} {{ $item['data']['key'] }}
                         @endif
                     </span>
                 </div>

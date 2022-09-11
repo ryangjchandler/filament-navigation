@@ -2,6 +2,27 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.3.1 - 2022-09-11
+
+### What's Changed
+
+- [Fix] Load support ServiceProvider by @bumbummen99 in https://github.com/ryangjchandler/filament-navigation/pull/20
+- Fix typo in README by @happytodev in https://github.com/ryangjchandler/filament-navigation/pull/28
+- Bump dependabot/fetch-metadata from 1.3.1 to 1.3.3 by @dependabot in https://github.com/ryangjchandler/filament-navigation/pull/30
+- A Minor updated on the README to reflect need to Run Migration by @blackmunk in https://github.com/ryangjchandler/filament-navigation/pull/32
+- Created translations for plugin by @koupisbean in https://github.com/ryangjchandler/filament-navigation/pull/25
+- [feat] Add pt_BR and pt_PT translations by @devmatheus in https://github.com/ryangjchandler/filament-navigation/pull/36
+
+### New Contributors
+
+- @bumbummen99 made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/20
+- @happytodev made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/28
+- @blackmunk made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/32
+- @koupisbean made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/25
+- @devmatheus made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/36
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.3.0...v0.3.1
+
 ## v0.3.0 - 2022-06-16
 
 ### What's Changed
@@ -72,6 +93,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

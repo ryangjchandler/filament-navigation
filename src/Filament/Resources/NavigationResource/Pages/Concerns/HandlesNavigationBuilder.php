@@ -52,7 +52,7 @@ trait HandlesNavigationBuilder
 
         $previous = $parent[$keys[$position - 1]];
 
-        if (!isset($previous['children'])) {
+        if (! isset($previous['children'])) {
             $previous['children'] = [];
         }
 
@@ -88,7 +88,7 @@ trait HandlesNavigationBuilder
         $hasMoved = false;
 
         uksort($parent, function ($_, $b) use ($uuid, &$hasMoved) {
-            if ($b === $uuid && !$hasMoved) {
+            if ($b === $uuid && ! $hasMoved) {
                 $hasMoved = true;
 
                 return 1;
@@ -109,7 +109,7 @@ trait HandlesNavigationBuilder
         $hasMoved = false;
 
         uksort($parent, function ($a, $_) use ($uuid, &$hasMoved) {
-            if ($a === $uuid && !$hasMoved) {
+            if ($a === $uuid && ! $hasMoved) {
                 $hasMoved = true;
 
                 return 1;
@@ -143,7 +143,7 @@ trait HandlesNavigationBuilder
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
-                    if (!$this->mountedItem) {
+                    if (! $this->mountedItem) {
                         return;
                     }
 
@@ -162,7 +162,7 @@ trait HandlesNavigationBuilder
                             return array_combine(array_keys($types), Arr::pluck($types, 'name'));
                         })
                         ->afterStateUpdated(function ($state, Select $component): void {
-                            if (!$state) {
+                            if (! $state) {
                                 return;
                             }
 

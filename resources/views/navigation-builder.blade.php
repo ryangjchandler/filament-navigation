@@ -10,9 +10,13 @@
     class="filament-navigation"
 >
     <div wire:key="navigation-items-wrapper">
-        <div x-data="navigationSortableContainer({
-            statePath: @js($getStatePath())
-        })" data-sortable-container>
+        <div
+            class="space-y-2"
+            x-data="navigationSortableContainer({
+                statePath: @js($getStatePath())
+            })"
+            data-sortable-container
+        >
             @forelse($getState() as $uuid => $item)
                 <x-filament-navigation::nav-item :statePath="$getStatePath() . '.' . $uuid" :item="$item" />
             @empty

@@ -25,6 +25,7 @@ document.addEventListener('alpine:initializing', function () {
           fallbackOnBody: true,
           swapThreshold: 0.50,
           draggable: '[data-sortable-item]',
+          handle: '[data-sortable-handle]',
           onSort: function onSort() {
             _this.sorted();
           }

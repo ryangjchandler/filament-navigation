@@ -7,16 +7,23 @@
     data-sortable-item
 >
     <div class="relative group">
-        <button
-            type="button"
-            wire:click="editItem('{{ $statePath }}')"
-            @class([
-                'appearance-none w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left',
-                'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
-            ])
-        >
-            {{ $item['label'] }}
-        </button>
+        <div @class([
+            'bg-white rounded-lg border border-gray-300 w-full flex',
+            'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
+        ])>
+            <button type="button" class="flex items-center bg-gray-50 rounded-l-lg border-r border-gray-300 px-px" data-sortable-handle>
+                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4 -mr-2')
+                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4')
+            </button>
+
+            <button
+                type="button"
+                wire:click="editItem('{{ $statePath }}')"
+                class="appearance-none w-full px-3 py-2 text-left"
+            >
+                {{ $item['label'] }}
+            </button>
+        </div>
 
         <div @class([
             'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',

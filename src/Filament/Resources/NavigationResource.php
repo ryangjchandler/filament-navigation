@@ -89,32 +89,32 @@ class NavigationResource extends Resource
 
     public static function navigationLabel(?string $string): void
     {
-        static::$workNavigationLabel = $string;
+        self::$workNavigationLabel = $string;
     }
 
     public static function pluralLabel(?string $string): void
     {
-        static::$workPluralLabel = $string;
+        self::$workPluralLabel = $string;
     }
 
     public static function label(?string $string): void
     {
-        static::$workLabel = $string;
+        self::$workLabel = $string;
     }
 
     protected static function getNavigationLabel(): string
     {
-        return static::$workNavigationLabel ?? parent::getNavigationLabel();
+        return self::$workNavigationLabel ?? parent::getNavigationLabel();
     }
 
     public static function getLabel(): ?string
     {
-        return static::$workLabel ?? parent::getLabel();
+        return self::$workLabel ?? parent::getLabel();
     }
 
     public static function getPluralLabel(): ?string
     {
-        return static::$workPluralLabel ?? parent::getPluralLabel();
+        return self::$workPluralLabel ?? parent::getPluralLabel();
     }
 
     public static function table(Table $table): Table

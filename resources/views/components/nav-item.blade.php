@@ -1,16 +1,12 @@
-@props(['item', 'statePath', 'nested' => false, 'moveUp' => false, 'moveDown' => false, 'indent' => false])
+@props(['item', 'statePath'])
 
 <div
     wire:key="{{ $statePath }}"
+    data-id="{{ $statePath }}"
     class="space-y-2"
+    data-sortable-item
 >
     <div class="relative group">
-        @if ($nested)
-            <span class="absolute -ml-3 text-xs text-gray-300 -translate-y-1/2 top-1/2">
-                &ndash;
-            </span>
-        @endif
-
         <button
             type="button"
             wire:click="editItem('{{ $statePath }}')"
@@ -37,58 +33,6 @@
                 <x-heroicon-o-plus class="w-3 h-3 text-gray-500 hover:text-gray-900" />
             </button>
 
-            @if ($moveUp)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.move-up')}}"
-                    type="button"
-                    wire:click="moveItemUp('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.move-up')}}"
-                >
-                    <x-heroicon-o-arrow-up class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
-            @if ($moveDown)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.move-down')}}"
-                    type="button"
-                    wire:click="moveItemDown('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.move-up')}}"
-                >
-                    <x-heroicon-o-arrow-down class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
-            @if ($indent)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.indent')}}"
-                    type="button"
-                    wire:click="indentItem('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.indent')}}"
-                >
-                    <x-heroicon-o-arrow-right class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
-            @if ($nested)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.dedent')}}"
-                    type="button"
-                    wire:click="dedentItem('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.dedent')}}"
-                >
-                    <x-heroicon-o-arrow-left class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
             <button
                 x-init
                 x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.remove')}}"
@@ -102,16 +46,15 @@
         </div>
     </div>
 
-    <div class="ml-3 space-y-2">
-        <div class="pl-3 border-l border-gray-300"
-            wire:key="{{ $statePath }}-children">
+    <div class="ml-6 space-y-2">
+        <div
+            wire:key="{{ $statePath }}-children"
+            x-data="navigationSortableContainer({
+                statePath: @js($statePath . '.children')
+            })"
+        >
             @foreach ($item['children'] as $uuid => $child)
-                <x-filament-navigation::nav-item :statePath="$statePath . '.children.' . $uuid"
-                    :item="$child"
-                    :moveUp="!$loop->first"
-                    :moveDown="!$loop->last"
-                    :indent="!$loop->first && $loop->count > 1"
-                    nested />
+                <x-filament-navigation::nav-item :statePath="$statePath . '.children.' . $uuid" :item="$child" />
             @endforeach
         </div>
     </div>

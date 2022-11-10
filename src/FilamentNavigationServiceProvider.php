@@ -14,17 +14,13 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
         NavigationResource::class,
     ];
 
-    protected function getStyles(): array
-    {
-        return [
-            asset('vendor/filament-navigation/plugin.css'),
-        ];
-    }
+    protected array $styles = [
+        'navigation-styles' => __DIR__ . '/../resources/dist/plugin.css',
+    ];
 
-    public function packageConfigured(Package $package): void
-    {
-        $package->hasAssets();
-    }
+    protected array $beforeCoreScripts = [
+        'navigation-scripts' => __DIR__ . '/../resources/dist/plugin.js'
+    ];
 
     public function packageRegistered(): void
     {

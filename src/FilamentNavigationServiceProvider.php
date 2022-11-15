@@ -4,7 +4,6 @@ namespace RyanChandler\FilamentNavigation;
 
 use Filament\PluginServiceProvider;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
-use Spatie\LaravelPackageTools\Package;
 
 class FilamentNavigationServiceProvider extends PluginServiceProvider
 {
@@ -17,10 +16,9 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
         ];
     }
 
-    public function packageConfigured(Package $package): void
-    {
-        $package->hasAssets();
-    }
+    protected array $beforeCoreScripts = [
+        'navigation-scripts' => __DIR__ . '/../resources/dist/plugin.js',
+    ];
 
     public function packageRegistered(): void
     {

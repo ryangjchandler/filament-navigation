@@ -1,26 +1,41 @@
-@props(['item', 'statePath', 'nested' => false, 'moveUp' => false, 'moveDown' => false, 'indent' => false])
+@props(['item', 'statePath'])
 
 <div
+    x-data="{ open: $persist(true) }"
     wire:key="{{ $statePath }}"
+    data-id="{{ $statePath }}"
     class="space-y-2"
+    data-sortable-item
 >
     <div class="relative group">
-        @if ($nested)
-            <span class="absolute -ml-3 text-xs text-gray-300 -translate-y-1/2 top-1/2">
-                &ndash;
-            </span>
-        @endif
+        <div @class([
+            'bg-white rounded-lg border border-gray-300 w-full flex',
+            'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
+        ])>
+            <button type="button" @class([
+                'flex items-center bg-gray-50 rounded-l-lg border-r border-gray-300 px-px',
+                'dark:bg-gray-800 dark:border-gray-600' => config('filament.dark_mode'),
+            ]) data-sortable-handle>
+                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4 -mr-2')
+                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4')
+            </button>
 
-        <button
-            type="button"
-            wire:click="editItem('{{ $statePath }}')"
-            @class([
-                'appearance-none w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left',
-                'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
-            ])
-        >
-            {{ $item['label'] }}
-        </button>
+            <button
+                type="button"
+                wire:click="editItem('{{ $statePath }}')"
+                class="appearance-none px-3 py-2 text-left"
+            >
+                <span>{{ $item['label'] }}</span>
+            </button>
+
+            @if(count($item['children']) > 0)
+                <button type="button" x-on:click="open = !open" title="Toggle children" class="appearance-none text-gray-500">
+                    <svg class="w-3.5 h-3.5 transition ease-in-out duration-200" x-bind:class="{
+                        '-rotate-90': !open,
+                    }" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            @endif
+        </div>
 
         <div @class([
             'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
@@ -37,58 +52,6 @@
                 <x-heroicon-o-plus class="w-3 h-3 text-gray-500 hover:text-gray-900" />
             </button>
 
-            @if ($moveUp)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.move-up')}}"
-                    type="button"
-                    wire:click="moveItemUp('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.move-up')}}"
-                >
-                    <x-heroicon-o-arrow-up class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
-            @if ($moveDown)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.move-down')}}"
-                    type="button"
-                    wire:click="moveItemDown('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.move-up')}}"
-                >
-                    <x-heroicon-o-arrow-down class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
-            @if ($indent)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.indent')}}"
-                    type="button"
-                    wire:click="indentItem('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.indent')}}"
-                >
-                    <x-heroicon-o-arrow-right class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
-            @if ($nested)
-                <button
-                    x-init
-                    x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.dedent')}}"
-                    type="button"
-                    wire:click="dedentItem('{{ $statePath }}')"
-                    class="p-1"
-                    title="{{__('filament-navigation::filament-navigation.items.dedent')}}"
-                >
-                    <x-heroicon-o-arrow-left class="w-3 h-3 text-gray-500 hover:text-gray-900" />
-                </button>
-            @endif
-
             <button
                 x-init
                 x-tooltip.raw.duration.0="{{__('filament-navigation::filament-navigation.items.remove')}}"
@@ -102,16 +65,16 @@
         </div>
     </div>
 
-    <div class="ml-3 space-y-2">
-        <div class="pl-3 border-l border-gray-300"
-            wire:key="{{ $statePath }}-children">
+    <div x-show="open" x-collapse class="ml-6">
+        <div
+            class="space-y-2"
+            wire:key="{{ $statePath }}-children"
+            x-data="navigationSortableContainer({
+                statePath: @js($statePath . '.children')
+            })"
+        >
             @foreach ($item['children'] as $uuid => $child)
-                <x-filament-navigation::nav-item :statePath="$statePath . '.children.' . $uuid"
-                    :item="$child"
-                    :moveUp="!$loop->first"
-                    :moveDown="!$loop->last"
-                    :indent="!$loop->first && $loop->count > 1"
-                    nested />
+                <x-filament-navigation::nav-item :statePath="$statePath . '.children.' . $uuid" :item="$child" />
             @endforeach
         </div>
     </div>

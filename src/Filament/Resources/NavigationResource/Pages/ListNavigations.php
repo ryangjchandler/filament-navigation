@@ -7,5 +7,8 @@ use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 
 class ListNavigations extends ListRecords
 {
-    protected static string $resource = NavigationResource::class;
+    public static function getResource(): string
+    {
+        return config('filament-navigation.navigation_resource') ?? NavigationResource::class;
+    }
 }

@@ -10,10 +10,6 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
 {
     public static string $name = 'filament-navigation';
 
-    protected array $resources = [
-        NavigationResource::class,
-    ];
-
     protected function getStyles(): array
     {
         return [
@@ -40,5 +36,12 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
         ]);
 
         parent::packageBooted();
+    }
+
+    protected function getResources(): array
+    {
+        return [
+            config('filament-navigation.navigation_resource') ?? NavigationResource::class,
+        ];
     }
 }

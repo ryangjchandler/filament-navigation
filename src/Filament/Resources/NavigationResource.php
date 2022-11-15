@@ -19,8 +19,6 @@ use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class NavigationResource extends Resource
 {
-    protected static ?string $model = Navigation::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-menu';
 
     protected static bool $showTimestamps = true;
@@ -148,5 +146,10 @@ class NavigationResource extends Resource
             'create' => NavigationResource\Pages\CreateNavigation::route('/create'),
             'edit' => NavigationResource\Pages\EditNavigation::route('/{record}'),
         ];
+    }
+
+    public static function getModel(): string
+    {
+        return config('filament-navigation.navigation_model') ?? Navigation::class;
     }
 }

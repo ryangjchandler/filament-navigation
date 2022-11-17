@@ -2,6 +2,22 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.4.0 - 2022-11-17
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 by @dependabot in https://github.com/ryangjchandler/filament-navigation/pull/49
+- Fix actions by @Kristories in https://github.com/ryangjchandler/filament-navigation/pull/48
+- feature: drag & drop navigation by @ryangjchandler in https://github.com/ryangjchandler/filament-navigation/pull/51
+- Enabled model and resource class configuration. by @danielbehrendt in https://github.com/ryangjchandler/filament-navigation/pull/53
+
+### New Contributors
+
+- @Kristories made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/48
+- @danielbehrendt made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/53
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.3.2...v0.4.0
+
 ## v0.3.2 - 2022-10-27
 
 ### What's Changed
@@ -109,6 +125,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

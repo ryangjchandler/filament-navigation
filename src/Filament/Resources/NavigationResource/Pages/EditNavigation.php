@@ -10,5 +10,8 @@ class EditNavigation extends EditRecord
 {
     use HandlesNavigationBuilder;
 
-    protected static string $resource = NavigationResource::class;
+    public static function getResource(): string
+    {
+        return config('filament-navigation.navigation_resource') ?? NavigationResource::class;
+    }
 }

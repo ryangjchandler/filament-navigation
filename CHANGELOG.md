@@ -2,6 +2,18 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.4.1 - 2022-11-29
+
+### What's Changed
+
+- Fix typo in it translation by @digitall-it in https://github.com/ryangjchandler/filament-navigation/pull/55
+
+### New Contributors
+
+- @digitall-it made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/55
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.4.0...v0.4.1
+
 ## v0.4.0 - 2022-11-17
 
 ### What's Changed
@@ -125,6 +137,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

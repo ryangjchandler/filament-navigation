@@ -19,7 +19,7 @@ return [
     ],
 
     'items' => [
-        'empty' => 'Nesuna voce di menù.',
+        'empty' => 'Nessuna voce di menù.',
         'add-item' => 'Aggiungi voce di menù',
         'add-child' => 'Aggiungi sotto-voce di menù',
         'move-up' => 'Sposta su',

@@ -27,7 +27,7 @@ class FilamentNavigationManager
 
     public function get(string $handle): ?Navigation
     {
-        return Navigation::firstWhere('handle', $handle);
+        return self::getModel()::firstWhere('handle', $handle);
     }
 
     public function getItemTypes(): array
@@ -49,5 +49,10 @@ class FilamentNavigationManager
                 ],
             ],
         ], $this->itemTypes);
+    }
+
+    public static function getModel(): string
+    {
+        return config('filament-navigation.navigation_model') ?? Navigation::class;
     }
 }

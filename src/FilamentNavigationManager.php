@@ -27,7 +27,7 @@ class FilamentNavigationManager
 
     public function get(string $handle): ?Navigation
     {
-        return self::getModel()::firstWhere('handle', $handle);
+        return static::getModel()::firstWhere('handle', $handle);
     }
 
     public function getItemTypes(): array

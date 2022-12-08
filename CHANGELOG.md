@@ -2,6 +2,14 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.4.2 - 2022-12-08
+
+### What's Changed
+
+- Fixed navigation model class handling. by @danielbehrendt in https://github.com/ryangjchandler/filament-navigation/pull/56
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.4.1...v0.4.2
+
 ## v0.4.1 - 2022-11-29
 
 ### What's Changed
@@ -137,6 +145,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

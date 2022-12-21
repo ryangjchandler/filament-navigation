@@ -13,13 +13,19 @@ class FilamentNavigationManager
 {
     use Macroable;
 
+    protected array $extraFields = [];
     protected array $itemTypes = [];
+
+    public function addExtraFields(array | Closure $fields = []) {
+        $this->extraFields = array_merge($this->extraFields, $fields);
+        return $this;
+    }
 
     public function addItemType(string $name, array | Closure $fields = []): static
     {
         $this->itemTypes[Str::slug($name)] = [
             'name' => $name,
-            'fields' => $fields,
+            'fields' => array_merge($fields, $this->extraFields),
         ];
 
         return $this;
@@ -46,6 +52,7 @@ class FilamentNavigationManager
                             '_blank' => __('filament-navigation::filament-navigation.select-options.new-tab'),
                         ])
                         ->default(''),
+                    ...$this->extraFields
                 ],
             ],
         ], $this->itemTypes);

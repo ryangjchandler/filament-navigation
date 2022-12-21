@@ -83,6 +83,19 @@ use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
 $menu = FilamentNavigation::get('main-menu');
 ```
 
+### Extra fields
+
+You can register global extra fields for all registered item-types (e.g. to specify class-attributes).
+
+```php
+use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+
+FilamentNavigation::addExtraFields([
+    TextInput::make('item_class')
+    // ...
+]);
+```
+
 ### Custom item types
 
 Out of the box, this plugin comes with a single "item type" called "External link". This item type expects a URL to be provided and an optional "target" (same tab or new tab).

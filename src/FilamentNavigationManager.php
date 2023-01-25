@@ -15,9 +15,12 @@ class FilamentNavigationManager
 
     protected array $itemTypes = [];
 
-    public function addItemType(string $name, array | Closure $fields = []): static
+    public function addItemType(string $name, array | Closure $fields = [], string | null $slug = null): static
     {
-        $this->itemTypes[Str::slug($name)] = [
+
+        $slug = empty($slug) ? Str::slug($name): $slug;
+
+        $this->itemTypes[$slug] = [
             'name' => $name,
             'fields' => $fields,
         ];

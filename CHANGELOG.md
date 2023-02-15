@@ -2,6 +2,19 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v0.5.0 - 2023-02-15
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.5 to 1.3.6 by @dependabot in https://github.com/ryangjchandler/filament-navigation/pull/61
+- Laravel 10 compatibility by @howdu in https://github.com/ryangjchandler/filament-navigation/pull/64
+
+### New Contributors
+
+- @howdu made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/64
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.4.2...v0.5.0
+
 ## v0.4.2 - 2022-12-08
 
 ### What's Changed
@@ -145,6 +158,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

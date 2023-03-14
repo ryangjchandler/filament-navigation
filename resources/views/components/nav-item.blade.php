@@ -28,7 +28,7 @@
                 <span>{{ $item['label'] }}</span>
             </button>
 
-            @if(count($item['children']) > 0)
+            @if(isset($item['children']) && count($item['children']) > 0)
                 <button type="button" x-on:click="open = !open" title="Toggle children" class="appearance-none text-gray-500">
                     <svg class="w-3.5 h-3.5 transition ease-in-out duration-200" x-bind:class="{
                         '-rotate-90': !open,
@@ -73,9 +73,11 @@
                 statePath: @js($statePath . '.children')
             })"
         >
-            @foreach ($item['children'] as $uuid => $child)
-                <x-filament-navigation::nav-item :statePath="$statePath . '.children.' . $uuid" :item="$child" />
-            @endforeach
+            @if(isset($item['children']))
+                @foreach ($item['children'] as $uuid => $child)
+                    <x-filament-navigation::nav-item :statePath="$statePath . '.children.' . $uuid" :item="$child" />
+                @endforeach
+            @endif
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@
                 <x-filament-navigation::nav-item :statePath="$getStatePath() . '.' . $uuid" :item="$item" />
             @empty
                 <div @class([
-                    'w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left',
+                    'w-full bg-white rounded-lg border border-gray-300 px-3 py-2 ltr:text-left rtl:text-right',
                     'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
                 ])>
                     {{__('filament-navigation::filament-navigation.items.empty')}}

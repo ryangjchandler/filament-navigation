@@ -13,10 +13,10 @@
             'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
         ])>
             <button type="button" @class([
-                'flex items-center bg-gray-50 rounded-l-lg border-r border-gray-300 px-px',
+                'flex items-center bg-gray-50 ltr:rounded-l-lg rtl:rounded-r-lg ltr:border-r rtl:border-l border-gray-300 px-px',
                 'dark:bg-gray-800 dark:border-gray-600' => config('filament.dark_mode'),
             ]) data-sortable-handle>
-                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4 -mr-2')
+                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4 ltr:-mr-2 rtl:-ml-2')
                 @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4')
             </button>
 
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div x-show="open" x-collapse class="ml-6">
+    <div x-show="open" x-collapse class="ltr:ml-6 rtl:mr-6">
         <div
             class="space-y-2"
             wire:key="{{ $statePath }}-children"

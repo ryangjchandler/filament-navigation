@@ -107,12 +107,12 @@ class NavigationResource extends Resource
         return self::$workNavigationLabel ?? parent::getNavigationLabel();
     }
 
-    public static function getLabel(): ?string
+    public static function getModelLabel(): string
     {
         return self::$workLabel ?? parent::getModelLabel();
     }
 
-    public static function getPluralLabel(): ?string
+    public static function getPluralModelLabel(): string
     {
         return self::$workPluralLabel ?? parent::getPluralModelLabel();
     }

@@ -10,6 +10,7 @@ use RyanChandler\FilamentNavigation\Models\Navigation;
 class FilamentNavigationPlugin implements Plugin
 {
     protected string $navigationResource = NavigationResource::class;
+
     protected string $navigationModel = Navigation::class;
 
     public function getId(): string

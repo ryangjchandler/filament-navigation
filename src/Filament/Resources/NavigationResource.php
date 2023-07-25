@@ -2,24 +2,26 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Resources;
 
-use Closure;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\View;
 use Filament\Forms\Components\ViewField;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use RyanChandler\FilamentNavigation\FilamentNavigationPlugin;
 use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class NavigationResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-menu';
+    protected static ?string $navigationIcon = 'heroicon-o-bars-3';
 
     protected static bool $showTimestamps = true;
 
@@ -42,7 +44,7 @@ class NavigationResource extends Resource
                     TextInput::make('name')
                         ->label(__('filament-navigation::filament-navigation.attributes.name'))
                         ->reactive()
-                        ->afterStateUpdated(function (?string $state, Closure $set) {
+                        ->afterStateUpdated(function (?string $state, Set $set) {
                             if (! $state) {
                                 return;
                             }
@@ -70,11 +72,11 @@ class NavigationResource extends Resource
                         Placeholder::make('created_at')
                             ->label(__('filament-navigation::filament-navigation.attributes.created_at'))
                             ->visible(static::$showTimestamps)
-                            ->content(fn (?Navigation $record) => $record ? $record->created_at->translatedFormat(config('tables.date_time_format')) : new HtmlString('&mdash;')),
+                            ->content(fn (?Navigation $record) => $record ? $record->created_at->translatedFormat(Table::$defaultDateTimeDisplayFormat) : new HtmlString('&mdash;')),
                         Placeholder::make('updated_at')
                             ->label(__('filament-navigation::filament-navigation.attributes.updated_at'))
                             ->visible(static::$showTimestamps)
-                            ->content(fn (?Navigation $record) => $record ? $record->updated_at->translatedFormat(config('tables.date_time_format')) : new HtmlString('&mdash;')),
+                            ->content(fn (?Navigation $record) => $record ? $record->updated_at->translatedFormat(Table::$defaultDateTimeDisplayFormat) : new HtmlString('&mdash;')),
                     ]),
                 ])
                     ->columnSpan([
@@ -100,19 +102,19 @@ class NavigationResource extends Resource
         self::$workLabel = $string;
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return self::$workNavigationLabel ?? parent::getNavigationLabel();
     }
 
     public static function getLabel(): ?string
     {
-        return self::$workLabel ?? parent::getLabel();
+        return self::$workLabel ?? parent::getModelLabel();
     }
 
     public static function getPluralLabel(): ?string
     {
-        return self::$workPluralLabel ?? parent::getPluralLabel();
+        return self::$workPluralLabel ?? parent::getPluralModelLabel();
     }
 
     public static function table(Table $table): Table
@@ -134,8 +136,8 @@ class NavigationResource extends Resource
                     ->dateTime()
                     ->sortable(),
             ])
-            ->filters([
-
+            ->actions([
+                EditAction::make()
             ]);
     }
 
@@ -150,6 +152,6 @@ class NavigationResource extends Resource
 
     public static function getModel(): string
     {
-        return config('filament-navigation.navigation_model') ?? Navigation::class;
+        return FilamentNavigationPlugin::get()->getNavigationModel();
     }
 }

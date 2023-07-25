@@ -10,14 +10,14 @@
     <div class="relative group">
         <div @class([
             'bg-white rounded-lg border border-gray-300 w-full flex',
-            'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
+            'dark:bg-gray-700 dark:border-gray-600' => \Filament\Facades\Filament::hasDarkMode(),
         ])>
             <button type="button" @class([
                 'flex items-center bg-gray-50 ltr:rounded-l-lg rtl:rounded-r-lg ltr:border-r rtl:border-l border-gray-300 px-px',
-                'dark:bg-gray-800 dark:border-gray-600' => config('filament.dark_mode'),
+                'dark:bg-gray-800 dark:border-gray-600' => \Filament\Facades\Filament::hasDarkMode(),
             ]) data-sortable-handle>
-                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4 ltr:-mr-2 rtl:-ml-2')
-                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4')
+                @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4 ltr:-mr-2 rtl:-ml-2')
+                @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4')
             </button>
 
             <button
@@ -39,7 +39,7 @@
 
         <div @class([
             'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
-            'dark:border-gray-600 dark:divide-gray-600' => config('filament.dark_mode'),
+            'dark:border-gray-600 dark:divide-gray-600' => \Filament\Facades\Filament::hasDarkMode(),
         ])>
             <button
                 x-init
@@ -49,7 +49,7 @@
                 class="p-1"
                 title="{{__('filament-navigation::filament-navigation.items.add-child')}}"
             >
-                <x-heroicon-o-plus class="w-3 h-3 text-gray-500 hover:text-gray-900" />
+                @svg('heroicon-s-plus-small','w-3 h-3 text-gray-500 hover:text-gray-900')
             </button>
 
             <button
@@ -60,7 +60,7 @@
                 class="p-1"
                 title="{{__('filament-navigation::filament-navigation.items.remove')}}"
             >
-                <x-heroicon-o-trash class="w-3 h-3 text-danger-500 hover:text-danger-900" />
+                @svg('heroicon-o-trash','w-3 h-3 text-danger-500 hover:text-danger-900')
             </button>
         </div>
     </div>

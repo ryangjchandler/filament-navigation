@@ -53,6 +53,6 @@ class FilamentNavigationManager
 
     public static function getModel(): string
     {
-        return config('filament-navigation.navigation_model') ?? Navigation::class;
+        return FilamentNavigationPlugin::get()->getNavigationModel();
     }
 }

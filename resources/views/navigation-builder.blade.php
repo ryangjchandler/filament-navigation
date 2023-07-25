@@ -1,4 +1,4 @@
-<x-forms::field-wrapper
+<x-filament-forms::field-wrapper
     :id="$getId()"
     :label="$getLabel()"
     :label-sr-only="$isLabelHidden()"
@@ -22,7 +22,7 @@
             @empty
                 <div @class([
                     'w-full bg-white rounded-lg border border-gray-300 px-3 py-2 ltr:text-left rtl:text-right',
-                    'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
+                    'dark:bg-gray-700 dark:border-gray-600' => \Filament\Facades\Filament::hasDarkMode(),
                 ])>
                     {{__('filament-navigation::filament-navigation.items.empty')}}
                 </div>
@@ -31,8 +31,8 @@
     </div>
 
     <div class="flex justify-end">
-        <x-filament::button wire:click="createItem" type="button" size="sm" color="secondary">
+        <x-filament::button wire:click="createItem" type="button" size="sm">
             {{__('filament-navigation::filament-navigation.items.add-item')}}
         </x-filament::button>
     </div>
-</x-forms::field-wrapper>
+</x-filament-forms::field-wrapper>

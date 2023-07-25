@@ -2,20 +2,15 @@
 
 namespace RyanChandler\FilamentNavigation;
 
-use Filament\PluginServiceProvider;
-use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentNavigationServiceProvider extends PluginServiceProvider
+class FilamentNavigationServiceProvider extends PackageServiceProvider
 {
     public static string $name = 'filament-navigation';
-
-    protected array $styles = [
-        'navigation-styles' => __DIR__ . '/../resources/dist/plugin.css',
-    ];
-
-    protected array $beforeCoreScripts = [
-        'navigation-scripts' => __DIR__ . '/../resources/dist/plugin.js',
-    ];
 
     public function packageRegistered(): void
     {
@@ -30,13 +25,18 @@ class FilamentNavigationServiceProvider extends PluginServiceProvider
             __DIR__ . '/../database/migrations',
         ]);
 
-        parent::packageBooted();
+        FilamentAsset::register([
+            Css::make('navigation-styles', __DIR__.'/../resources/dist/plugin.css'),
+            Js::make('navigation-scripts', __DIR__.'/../resources/dist/plugin.js'),
+        ], 'filament-navigation');
     }
 
-    protected function getResources(): array
+    public function configurePackage(Package $package): void
     {
-        return [
-            config('filament-navigation.navigation_resource') ?? NavigationResource::class,
-        ];
+        $package
+            ->name(static::$name)
+            ->hasAssets()
+            ->hasTranslations()
+            ->hasViews('filament-navigation');
     }
 }

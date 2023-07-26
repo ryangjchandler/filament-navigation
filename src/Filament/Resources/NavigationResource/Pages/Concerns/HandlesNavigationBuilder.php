@@ -21,7 +21,7 @@ trait HandlesNavigationBuilder
 
     public $mountedChildTarget;
 
-    public function sortNavigation(string $targetStatePath, array $targetItemsStatePaths)
+    public function sortNavigation(string $targetStatePath, array $targetItemsStatePaths): void
     {
         $items = [];
 
@@ -35,14 +35,14 @@ trait HandlesNavigationBuilder
         data_set($this, $targetStatePath, $items);
     }
 
-    public function addChild(string $statePath)
+    public function addChild(string $statePath): void
     {
         $this->mountedChildTarget = $statePath;
 
-        $this->mountAction('item');
+        $this->mountAction('itemAction');
     }
 
-    public function removeItem(string $statePath)
+    public function removeItem(string $statePath): void
     {
         $uuid = Str::afterLast($statePath, '.');
 
@@ -52,98 +52,96 @@ trait HandlesNavigationBuilder
         data_set($this, $parentPath, Arr::except($parent, $uuid));
     }
 
-    public function editItem(string $statePath)
+    public function editItem(string $statePath): void
     {
         $this->mountedItem = $statePath;
         $this->mountedItemData = Arr::except(data_get($this, $statePath), 'children');
 
-        $this->mountAction('item');
+        $this->mountAction('itemAction');
     }
 
-    public function createItem()
+    public function createItem(): void
     {
         $this->mountedItem = null;
         $this->mountedItemData = [];
         $this->mountedActionData = [];
 
-        $this->mountAction('item');
+        $this->mountAction('itemAction');
     }
 
-    protected function getActions(): array
+    protected function itemAction(): Action
     {
-        return [
-            Action::make('item')
-                ->mountUsing(function (ComponentContainer $form) {
-                    if (! $this->mountedItem) {
-                        return;
-                    }
+        return Action::make('itemAction')
+            ->mountUsing(function (ComponentContainer $form) {
+                if (!$this->mountedItem) {
+                    return;
+                }
 
-                    $form->fill($this->mountedItemData);
-                })
-                ->view('filament-navigation::hidden-action')
-                ->form([
-                    TextInput::make('label')
-                        ->label(__('filament-navigation::filament-navigation.items-modal.label'))
-                        ->required(),
-                    Select::make('type')
-                        ->label(__('filament-navigation::filament-navigation.items-modal.type'))
-                        ->options(function () {
-                            $types = FilamentNavigation::getItemTypes();
+                $form->fill($this->mountedItemData);
+            })
+            ->view('filament-navigation::hidden-action')
+            ->form([
+                TextInput::make('label')
+                    ->label(__('filament-navigation::filament-navigation.items-modal.label'))
+                    ->required(),
+                Select::make('type')
+                    ->label(__('filament-navigation::filament-navigation.items-modal.type'))
+                    ->options(function () {
+                        $types = FilamentNavigation::getItemTypes();
 
-                            return array_combine(array_keys($types), Arr::pluck($types, 'name'));
-                        })
-                        ->afterStateUpdated(function ($state, Select $component): void {
-                            if (! $state) {
-                                return;
-                            }
+                        return array_combine(array_keys($types), Arr::pluck($types, 'name'));
+                    })
+                    ->afterStateUpdated(function ($state, Select $component): void {
+                        if (!$state) {
+                            return;
+                        }
 
-                            // NOTE: This chunk of code is a workaround for Livewire not letting
-                            //       you entangle to non-existent array keys, which wire:model
-                            //       would normally let you do.
-                            $component
-                                ->getContainer()
-                                ->getComponent(fn (Component $component) => $component instanceof Group)
-                                ->getChildComponentContainer()
-                                ->fill();
-                        })
-                        ->reactive(),
-                    Group::make()
-                        ->statePath('data')
-                        ->schema(function (Get $get) {
-                            $type = $get('type');
+                        // NOTE: This chunk of code is a workaround for Livewire not letting
+                        //       you entangle to non-existent array keys, which wire:model
+                        //       would normally let you do.
+                        $component
+                            ->getContainer()
+                            ->getComponent(fn(Component $component) => $component instanceof Group)
+                            ->getChildComponentContainer()
+                            ->fill();
+                    })
+                    ->reactive(),
+                Group::make()
+                    ->statePath('data')
+                    ->schema(function (Get $get) {
+                        $type = $get('type');
 
-                            return FilamentNavigation::getItemTypes()[$type]['fields'] ?? [];
-                        }),
-                ])
-                ->modalWidth('md')
-                ->action(function (array $data) {
-                    if ($this->mountedItem) {
-                        data_set($this, $this->mountedItem, array_merge(data_get($this, $this->mountedItem), $data));
+                        return FilamentNavigation::getItemTypes()[$type]['fields'] ?? [];
+                    }),
+            ])
+            ->modalWidth('md')
+            ->action(function (array $data) {
+                if ($this->mountedItem) {
+                    data_set($this, $this->mountedItem, array_merge(data_get($this, $this->mountedItem), $data));
 
-                        $this->mountedItem = null;
-                        $this->mountedItemData = [];
-                    } elseif ($this->mountedChildTarget) {
-                        $children = data_get($this, $this->mountedChildTarget . '.children', []);
+                    $this->mountedItem = null;
+                    $this->mountedItemData = [];
+                } elseif ($this->mountedChildTarget) {
+                    $children = data_get($this, $this->mountedChildTarget.'.children', []);
 
-                        $children[(string) Str::uuid()] = [
-                            ...$data,
-                            ...['children' => []],
-                        ];
+                    $children[(string) Str::uuid()] = [
+                        ...$data,
+                        ...['children' => []],
+                    ];
 
-                        data_set($this, $this->mountedChildTarget . '.children', $children);
+                    data_set($this, $this->mountedChildTarget.'.children', $children);
 
-                        $this->mountedChildTarget = null;
-                    } else {
-                        $this->data['items'][(string) Str::uuid()] = [
-                            ...$data,
-                            ...['children' => []],
-                        ];
-                    }
+                    $this->mountedChildTarget = null;
+                } else {
+                    $this->data['items'][(string) Str::uuid()] = [
+                        ...$data,
+                        ...['children' => []],
+                    ];
+                }
 
-                    $this->mountedActionData = [];
-                })
-                ->modalSubmitActionLabel(__('filament-navigation::filament-navigation.items-modal.btn'))
-                ->label(__('filament-navigation::filament-navigation.items-modal.title')),
-        ];
+                $this->mountedActionData = [];
+            })
+            ->modalSubmitActionLabel(__('filament-navigation::filament-navigation.items-modal.btn'))
+            ->label(__('filament-navigation::filament-navigation.items-modal.title'));
     }
 }

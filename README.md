@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ryangjchandler/filament-navigation/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ryangjchandler/filament-navigation/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/ryangjchandler/filament-navigation.svg?style=flat-square)](https://packagist.org/packages/ryangjchandler/filament-navigation)
 
-This plugin for Filament provides a `Navigation` resource that allows to build structural navigation menus with ease.
+This plugin for Filament provides a `Navigation` resource that lets you build structural navigation menus with a clean drag-and-drop UI.
 
 ## Installation
 
@@ -15,7 +15,7 @@ Begin by installing this package via Composer:
 composer require ryangjchandler/filament-navigation
 ```
 
-Run Migration:
+Run migrations.
 
 ```sh
 php artisan migrate
@@ -24,14 +24,21 @@ php artisan migrate
 Publish the package's assets:
 
 ```sh
-php artisan vendor:publish --tag="filament-navigation-assets"
+php artisan filament:assets
 ```
 
 ## Usage
 
-The `NavigationResource` is automatically registered with Filament so no configuration is required to start using it.
+You first need to register the plugin with Filament. This can be done inside of your `PanelProvider`, e.g. `AdminPanelProvider`.
 
-If you wish to customise the navigation group, sort or icon, you can use the respective `NavigationResource::navigationGroup()`, `NavigationResource::navigationSort()` and `NavigationResource::navigationIcon()` methods.
+```php
+use RyanChandler\FilamentNavigation\FilamentNavigation;
+
+return $panel
+    ->plugin(FilamentNavigation::make());
+```
+
+If you wish to customise the navigation group, sort or icon, you can use the `NavigationResource::navigationGroup()`, `NavigationResource::navigationSort()` and `NavigationResource::navigationIcon()` methods.
 
 ### Data structure
 
@@ -75,35 +82,50 @@ The recursive structure makes it really simple to render nested menus / dropdown
 
 ### Retrieving a navigation object
 
-To retrieve a navigation object, provide the handle to the `RyanChandler\FilamentNavigation\Facades\FilamentNavigation::get()` method.
+To retrieve a navigation object, provide the handle to the `RyanChandler\FilamentNavigation\Models\Navigation::fromHandle()` method.
 
 ```php
-use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+use RyanChandler\FilamentNavigation\Models\Navigation;
 
-$menu = FilamentNavigation::get('main-menu');
+$menu = Navigation::fromHandle('main-menu');
 ```
 
 ### Custom item types
 
 Out of the box, this plugin comes with a single "item type" called "External link". This item type expects a URL to be provided and an optional "target" (same tab or new tab).
 
-It's possible to extend the plugin with custom item types. Custom item types have a name and an array of Filament field objects that will be displayed inside of the "Item" modal.
+It's possible to extend the plugin with custom item types. Custom item types have a name and an array of Filament field objects (or a `Closure` that produces an array) that will be displayed inside of the "Item" modal.
 
 This API allows you to deeply integrate navigation menus with your application's own entities and models.
 
 ```php
-use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
-
-FilamentNavigation::addItemType('Post link', [
-    Select::make('post_id')
-        ->searchable()
-        ->options(function () {
-            return Post::pluck('title', 'id');
-        })
-]);
+return $panel
+    ->plugin(
+        FilamentNavigation::make()
+            ->itemType('post', [
+                Select::make('post_id')
+                    ->//...
+            ])
+    );
 ```
 
 All custom fields for the item type can be found inside of the `data` property on the item.
+
+### Global custom fields
+
+There might be cases where you want all item types to have an additional set of fields. This is useful for classes, custom IDs and more.
+
+To register global custom fields, use the `withExtraFields()` method on the plugin object.
+
+```php
+return $panel
+    ->plugin(
+        FilamentNavigation::make()
+            ->withExtraFields([
+                TextInput::make('classes'),
+            ]),
+    );
+```
 
 ### The `Navigation` field type
 

@@ -19,6 +19,8 @@ class FilamentNavigation implements Plugin
 
     protected array $itemTypes = [];
 
+    protected array | Closure $extraFields = [];
+
     public function getId(): string
     {
         return 'navigation';
@@ -46,6 +48,13 @@ class FilamentNavigation implements Plugin
             'name' => $name,
             'fields' => $fields,
         ];
+
+        return $this;
+    }
+
+    public function withExtraFields(array | Closure $schema): static
+    {
+        $this->extraFields = $schema;
 
         return $this;
     }
@@ -79,6 +88,11 @@ class FilamentNavigation implements Plugin
     public function getResource(): string
     {
         return $this->resource;
+    }
+
+    public function getExtraFields(): array | Closure
+    {
+        return $this->extraFields;
     }
 
     public function getItemTypes(): array

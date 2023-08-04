@@ -109,10 +109,17 @@ trait HandlesNavigationBuilder
                         ->reactive(),
                     Group::make()
                         ->statePath('data')
+                        ->whenTruthy('type')
                         ->schema(function (Get $get) {
                             $type = $get('type');
 
                             return FilamentNavigation::get()->getItemTypes()[$type]['fields'] ?? [];
+                        }),
+                    Group::make()
+                        ->statePath('data')
+                        ->visible(fn (Component $component) => $component->evaluate(FilamentNavigation::get()->getExtraFields()) !== [])
+                        ->schema(function (Component $component) {
+                            return FilamentNavigation::get()->getExtraFields();
                         }),
                 ])
                 ->modalWidth('md')

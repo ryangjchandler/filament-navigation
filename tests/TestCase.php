@@ -2,23 +2,23 @@
 
 namespace RyanChandler\FilamentNavigation\Tests;
 
-use Illuminate\Support\Str;
-use Filament\FilamentServiceProvider;
-use Livewire\LivewireServiceProvider;
-use Filament\Forms\FormsServiceProvider;
-use Filament\Tables\TablesServiceProvider;
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
-use Filament\Support\SupportServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
+use Filament\FilamentServiceProvider;
+use Filament\Forms\FormsServiceProvider;
 use Filament\Infolists\InfolistsServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use Filament\Notifications\NotificationsServiceProvider;
+use Filament\Support\SupportServiceProvider;
+use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use RyanChandler\FilamentNavigation\FilamentNavigationServiceProvider;
+use Illuminate\Support\Str;
+use Livewire\LivewireServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use RyanChandler\FilamentNavigation\FilamentNavigationServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -9,11 +9,6 @@ use Illuminate\Support\ServiceProvider;
 
 class FilamentNavigationServiceProvider extends ServiceProvider
 {
-    public function register()
-    {
-        $this->app->scoped(FilamentNavigationManager::class);
-    }
-
     public function boot()
     {
         $this->loadMigrationsFrom([

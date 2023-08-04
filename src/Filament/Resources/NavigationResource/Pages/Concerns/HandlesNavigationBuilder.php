@@ -11,7 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Get;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
@@ -88,7 +88,7 @@ trait HandlesNavigationBuilder
                     Select::make('type')
                         ->label(__('filament-navigation::filament-navigation.items-modal.type'))
                         ->options(function () {
-                            $types = FilamentNavigation::getItemTypes();
+                            $types = FilamentNavigation::get()->getItemTypes();
 
                             return array_combine(array_keys($types), Arr::pluck($types, 'name'));
                         })
@@ -112,7 +112,7 @@ trait HandlesNavigationBuilder
                         ->schema(function (Get $get) {
                             $type = $get('type');
 
-                            return FilamentNavigation::getItemTypes()[$type]['fields'] ?? [];
+                            return FilamentNavigation::get()->getItemTypes()[$type]['fields'] ?? [];
                         }),
                 ])
                 ->modalWidth('md')

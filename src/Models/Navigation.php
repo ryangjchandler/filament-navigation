@@ -20,4 +20,9 @@ class Navigation extends Model
     protected $casts = [
         'items' => 'json',
     ];
+
+    public static function fromHandle(string $handle): ?static
+    {
+        return static::query()->firstWhere('handle', $handle);
+    }
 }

@@ -64,10 +64,7 @@
         "laravel": {
             "providers": [
                 "RyanChandler\\FilamentNavigation\\FilamentNavigationServiceProvider"
-            ],
-            "aliases": {
-                "FilamentNavigation": "RyanChandler\\FilamentNavigation\\Facades\\FilamentNavigation"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

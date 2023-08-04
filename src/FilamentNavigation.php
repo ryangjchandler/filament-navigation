@@ -4,7 +4,6 @@ namespace RyanChandler\FilamentNavigation;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Filament\PluginServiceProvider;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 
 class FilamentNavigation implements Plugin

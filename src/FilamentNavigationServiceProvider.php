@@ -28,7 +28,7 @@ class FilamentNavigationServiceProvider extends ServiceProvider
 
         FilamentAsset::register([
             Css::make('filament-navigation-styles', __DIR__ . '/../resources/dist/plugin.css'),
-            Js::make('filament-navigation-scripts', __DIR__ . '/../resources/dist/plugin.js')
+            Js::make('filament-navigation-scripts', __DIR__ . '/../resources/dist/plugin.js'),
         ], 'filament-navigation');
     }
 }

@@ -2,10 +2,6 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Resources;
 
-use Closure;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
@@ -15,8 +11,10 @@ use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Tables\Table;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use RyanChandler\FilamentNavigation\Models\Navigation;

@@ -2,7 +2,6 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns;
 
-use Closure;
 use Filament\Actions\Action;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Component;

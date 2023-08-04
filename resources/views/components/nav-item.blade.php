@@ -49,7 +49,7 @@
                 class="p-1"
                 title="{{__('filament-navigation::filament-navigation.items.add-child')}}"
             >
-                <x-heroicon-o-plus class="w-3 h-3 text-gray-500 hover:text-gray-900" />
+                @svg('heroicon-o-plus', 'w-3 h-3 text-gray-500 hover:text-gray-900')
             </button>
 
             <button
@@ -60,7 +60,7 @@
                 class="p-1"
                 title="{{__('filament-navigation::filament-navigation.items.remove')}}"
             >
-                <x-heroicon-o-trash class="w-3 h-3 text-danger-500 hover:text-danger-900" />
+                @svg('heroicon-o-trash', 'w-3 h-3 text-danger-500 hover:text-danger-900')
             </button>
         </div>
     </div>

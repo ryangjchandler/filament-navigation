@@ -2,6 +2,16 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v1.0.0-beta1 - 2023-08-04
+
+This release marks the start of the `v1.0.0` series of releases.
+
+It introduces support for Filament v3.x and removes support for v2.x.
+
+To upgrade your application and this package, please consult the [`UPGRADE`](UPGRADE.md) guide.
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v0.5.0...v1.0.0-beta1
+
 ## v0.5.0 - 2023-02-15
 
 ### What's Changed
@@ -158,6 +168,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

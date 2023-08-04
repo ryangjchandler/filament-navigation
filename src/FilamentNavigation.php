@@ -40,9 +40,9 @@ class FilamentNavigation implements Plugin
         return $this;
     }
 
-    public function itemType(string $name, array | Closure $fields): static
+    public function itemType(string $name, array | Closure $fields, ?string $slug = null): static
     {
-        $this->itemTypes[Str::slug($name)] = [
+        $this->itemTypes[$slug ?? Str::slug($name)] = [
             'name' => $name,
             'fields' => $fields,
         ];

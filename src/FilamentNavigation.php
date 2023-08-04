@@ -8,16 +8,6 @@ use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 
 class FilamentNavigation implements Plugin
 {
-    public static string $name = 'filament-navigation';
-
-    protected array $styles = [
-        'navigation-styles' => __DIR__ . '/../resources/dist/plugin.css',
-    ];
-
-    protected array $beforeCoreScripts = [
-        'navigation-scripts' => __DIR__ . '/../resources/dist/plugin.js',
-    ];
-
     public function getId(): string
     {
         return 'navigation';

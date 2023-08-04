@@ -99,7 +99,7 @@ class FilamentNavigation implements Plugin
                             ])
                             ->default(''),
                     ],
-                ]
+                ],
             ],
             $this->itemTypes
         );

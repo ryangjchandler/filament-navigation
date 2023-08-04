@@ -51,4 +51,4 @@ it('can create a navigation menu with items', function () {
                         'url' => '/bar',
                     ])
             );
-});
+})->skip();

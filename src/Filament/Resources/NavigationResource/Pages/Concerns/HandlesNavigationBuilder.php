@@ -2,17 +2,16 @@
 
 namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns;
 
-use Closure;
+use Filament\Actions\Action;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-
-use Filament\Pages\Actions\Action;
+use Filament\Forms\Get;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
 
 trait HandlesNavigationBuilder
 {
@@ -89,7 +88,7 @@ trait HandlesNavigationBuilder
                     Select::make('type')
                         ->label(__('filament-navigation::filament-navigation.items-modal.type'))
                         ->options(function () {
-                            $types = FilamentNavigation::getItemTypes();
+                            $types = FilamentNavigation::get()->getItemTypes();
 
                             return array_combine(array_keys($types), Arr::pluck($types, 'name'));
                         })
@@ -110,10 +109,17 @@ trait HandlesNavigationBuilder
                         ->reactive(),
                     Group::make()
                         ->statePath('data')
-                        ->schema(function (Closure $get) {
+                        ->whenTruthy('type')
+                        ->schema(function (Get $get) {
                             $type = $get('type');
 
-                            return FilamentNavigation::getItemTypes()[$type]['fields'] ?? [];
+                            return FilamentNavigation::get()->getItemTypes()[$type]['fields'] ?? [];
+                        }),
+                    Group::make()
+                        ->statePath('data')
+                        ->visible(fn (Component $component) => $component->evaluate(FilamentNavigation::get()->getExtraFields()) !== [])
+                        ->schema(function (Component $component) {
+                            return FilamentNavigation::get()->getExtraFields();
                         }),
                 ])
                 ->modalWidth('md')

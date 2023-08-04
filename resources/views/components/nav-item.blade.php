@@ -16,8 +16,8 @@
                 'flex items-center bg-gray-50 rounded-l-lg border-r border-gray-300 px-px',
                 'dark:bg-gray-800 dark:border-gray-600' => config('filament.dark_mode'),
             ]) data-sortable-handle>
-                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4 -mr-2')
-                @svg('heroicon-o-dots-vertical', 'text-gray-400 w-4 h-4')
+                @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4 -mr-2')
+                @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4')
             </button>
 
             <button

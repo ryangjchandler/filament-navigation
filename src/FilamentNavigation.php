@@ -111,7 +111,8 @@ class FilamentNavigation implements Plugin
                                 '' => __('filament-navigation::filament-navigation.select-options.same-tab'),
                                 '_blank' => __('filament-navigation::filament-navigation.select-options.new-tab'),
                             ])
-                            ->default(''),
+                            ->default('')
+                            ->selectablePlaceholder(false),
                     ],
                 ],
             ],

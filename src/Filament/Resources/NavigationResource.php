@@ -3,15 +3,19 @@
 namespace RyanChandler\FilamentNavigation\Filament\Resources;
 
 use Closure;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\View;
 use Filament\Forms\Components\ViewField;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
@@ -19,7 +23,7 @@ use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class NavigationResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-menu';
+    protected static ?string $navigationIcon = 'heroicon-o-bars-3';
 
     protected static bool $showTimestamps = true;
 
@@ -38,11 +42,12 @@ class NavigationResource extends Resource
     {
         return $form
             ->schema([
-                Card::make([
+                Section::make('')->schema([
                     TextInput::make('name')
                         ->label(__('filament-navigation::filament-navigation.attributes.name'))
                         ->reactive()
-                        ->afterStateUpdated(function (?string $state, Closure $set) {
+                        ->debounce()
+                        ->afterStateUpdated(function (?string $state, Set $set) {
                             if (! $state) {
                                 return;
                             }
@@ -60,7 +65,7 @@ class NavigationResource extends Resource
                         'lg' => 8,
                     ]),
                 Group::make([
-                    Card::make([
+                    Section::make('')->schema([
                         TextInput::make('handle')
                             ->label(__('filament-navigation::filament-navigation.attributes.handle'))
                             ->required()
@@ -70,11 +75,11 @@ class NavigationResource extends Resource
                         Placeholder::make('created_at')
                             ->label(__('filament-navigation::filament-navigation.attributes.created_at'))
                             ->visible(static::$showTimestamps)
-                            ->content(fn (?Navigation $record) => $record ? $record->created_at->translatedFormat(config('tables.date_time_format')) : new HtmlString('&mdash;')),
+                            ->content(fn (?Navigation $record) => $record ? $record->created_at->translatedFormat(Table::$defaultDateTimeDisplayFormat) : new HtmlString('&mdash;')),
                         Placeholder::make('updated_at')
                             ->label(__('filament-navigation::filament-navigation.attributes.updated_at'))
                             ->visible(static::$showTimestamps)
-                            ->content(fn (?Navigation $record) => $record ? $record->updated_at->translatedFormat(config('tables.date_time_format')) : new HtmlString('&mdash;')),
+                            ->content(fn (?Navigation $record) => $record ? $record->updated_at->translatedFormat(Table::$defaultDateTimeDisplayFormat) : new HtmlString('&mdash;')),
                     ]),
                 ])
                     ->columnSpan([
@@ -100,19 +105,19 @@ class NavigationResource extends Resource
         self::$workLabel = $string;
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return self::$workNavigationLabel ?? parent::getNavigationLabel();
     }
 
-    public static function getLabel(): ?string
+    public static function getModelLabel(): string
     {
-        return self::$workLabel ?? parent::getLabel();
+        return self::$workLabel ?? parent::getModelLabel();
     }
 
-    public static function getPluralLabel(): ?string
+    public static function getPluralModelLabel(): string
     {
-        return self::$workPluralLabel ?? parent::getPluralLabel();
+        return self::$workPluralLabel ?? parent::getPluralModelLabel();
     }
 
     public static function table(Table $table): Table
@@ -133,6 +138,12 @@ class NavigationResource extends Resource
                     ->label(__('filament-navigation::filament-navigation.attributes.updated_at'))
                     ->dateTime()
                     ->sortable(),
+            ])
+            ->actions([
+                EditAction::make()
+                    ->icon(null),
+                DeleteAction::make()
+                    ->icon(null),
             ])
             ->filters([
 

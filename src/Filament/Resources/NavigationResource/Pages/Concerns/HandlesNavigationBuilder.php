@@ -3,13 +3,13 @@
 namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns;
 
 use Closure;
+use Filament\Actions\Action;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-
-use Filament\Pages\Actions\Action;
+use Filament\Forms\Get;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use RyanChandler\FilamentNavigation\Facades\FilamentNavigation;
@@ -110,7 +110,7 @@ trait HandlesNavigationBuilder
                         ->reactive(),
                     Group::make()
                         ->statePath('data')
-                        ->schema(function (Closure $get) {
+                        ->schema(function (Get $get) {
                             $type = $get('type');
 
                             return FilamentNavigation::getItemTypes()[$type]['fields'] ?? [];

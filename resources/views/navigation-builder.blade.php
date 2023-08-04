@@ -1,4 +1,4 @@
-<x-forms::field-wrapper
+<x-filament-forms::field-wrapper
     :id="$getId()"
     :label="$getLabel()"
     :label-sr-only="$isLabelHidden()"
@@ -31,8 +31,8 @@
     </div>
 
     <div class="flex justify-end">
-        <x-filament::button wire:click="createItem" type="button" size="sm" color="secondary">
+        <x-filament::button wire:click="createItem" type="button" size="sm">
             {{__('filament-navigation::filament-navigation.items.add-item')}}
         </x-filament::button>
     </div>
-</x-forms::field-wrapper>
+</x-filament-forms::field-wrapper>

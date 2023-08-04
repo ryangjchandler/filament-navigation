@@ -2,6 +2,18 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v1.0.0-beta2 - 2023-08-04
+
+### What's Changed
+
+- switch icon component to svg by @atmonshi in https://github.com/ryangjchandler/filament-navigation/pull/84
+
+### New Contributors
+
+- @atmonshi made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/84
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v1.0.0-beta1...v1.0.0-beta2
+
 ## v1.0.0-beta1 - 2023-08-04
 
 This release marks the start of the `v1.0.0` series of releases.
@@ -168,6 +180,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

@@ -5,12 +5,13 @@ namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
 
 class ListNavigations extends ListRecords
 {
     public static function getResource(): string
     {
-        return config('filament-navigation.navigation_resource') ?? NavigationResource::class;
+        return FilamentNavigation::get()->getResource();
     }
 
     protected function getActions(): array

@@ -159,6 +159,6 @@ class NavigationResource extends Resource
 
     public static function getModel(): string
     {
-        return config('filament-navigation.navigation_model') ?? Navigation::class;
+        return filament('navigation')->get()->getModel();
     }
 }

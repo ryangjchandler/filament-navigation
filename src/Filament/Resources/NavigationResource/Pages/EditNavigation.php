@@ -12,6 +12,6 @@ class EditNavigation extends EditRecord
 
     public static function getResource(): string
     {
-        return config('filament-navigation.navigation_resource') ?? NavigationResource::class;
+        return filament('navigation')->get()->getResource();
     }
 }

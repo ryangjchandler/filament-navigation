@@ -10,7 +10,7 @@ class ListNavigations extends ListRecords
 {
     public static function getResource(): string
     {
-        return config('filament-navigation.navigation_resource') ?? NavigationResource::class;
+        return filament('navigation')->get()->getResource();
     }
 
     protected function getActions(): array

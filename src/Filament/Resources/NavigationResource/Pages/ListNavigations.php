@@ -4,7 +4,6 @@ namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\
 
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
-use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 use RyanChandler\FilamentNavigation\FilamentNavigation;
 
 class ListNavigations extends ListRecords

@@ -5,6 +5,7 @@ namespace RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\
 use Filament\Resources\Pages\CreateRecord;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource;
 use RyanChandler\FilamentNavigation\Filament\Resources\NavigationResource\Pages\Concerns\HandlesNavigationBuilder;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
 
 class CreateNavigation extends CreateRecord
 {
@@ -12,6 +13,6 @@ class CreateNavigation extends CreateRecord
 
     public static function getResource(): string
     {
-        return filament('navigation')->get()->getResource();
+        return FilamentNavigation::get()->getResource();
     }
 }

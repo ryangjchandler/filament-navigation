@@ -17,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
 use RyanChandler\FilamentNavigation\Models\Navigation;
 
 class NavigationResource extends Resource
@@ -159,6 +160,6 @@ class NavigationResource extends Resource
 
     public static function getModel(): string
     {
-        return filament('navigation')->get()->getModel();
+        return FilamentNavigation::get()->getModel();
     }
 }

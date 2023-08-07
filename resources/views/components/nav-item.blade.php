@@ -10,11 +10,11 @@
     <div class="relative group">
         <div @class([
             'bg-white rounded-lg border border-gray-300 w-full flex',
-            'dark:bg-gray-700 dark:border-gray-600' => config('filament.dark_mode'),
+            'dark:bg-gray-700 dark:border-gray-600',
         ])>
             <button type="button" @class([
                 'flex items-center bg-gray-50 rounded-l-lg border-r border-gray-300 px-px',
-                'dark:bg-gray-800 dark:border-gray-600' => config('filament.dark_mode'),
+                'dark:bg-gray-800 dark:border-gray-600',
             ]) data-sortable-handle>
                 @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4 -mr-2')
                 @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4')
@@ -39,7 +39,7 @@
 
         <div @class([
             'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
-            'dark:border-gray-600 dark:divide-gray-600' => config('filament.dark_mode'),
+            'dark:border-gray-600 dark:divide-gray-600',
         ])>
             <button
                 x-init

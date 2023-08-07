@@ -2,6 +2,19 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v1.0.0-beta3 - 2023-08-07
+
+### What's Changed
+
+- Replace redundant config with filament plugin method by @howdu in https://github.com/ryangjchandler/filament-navigation/pull/86
+- fix: remove conditions on dark-mode classes by @mrfade in https://github.com/ryangjchandler/filament-navigation/pull/85
+
+### New Contributors
+
+- @mrfade made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/85
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v1.0.0-beta2...v1.0.0-beta3
+
 ## v1.0.0-beta2 - 2023-08-04
 
 ### What's Changed
@@ -180,6 +193,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

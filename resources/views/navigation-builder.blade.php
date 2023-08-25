@@ -9,9 +9,6 @@
     :state-path="$getStatePath()"
     class="filament-navigation"
 >
-    <div class="bg-pink-500 p-4 m-4">
-        dddf dfdfdf
-    </div>
     <div wire:key="navigation-items-wrapper">
         <div
             class="space-y-2"

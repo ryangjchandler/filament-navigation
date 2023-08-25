@@ -13,17 +13,17 @@
             'dark:bg-gray-700 dark:border-gray-600',
         ])>
             <button type="button" @class([
-                'flex items-center bg-gray-50 rounded-l-lg border-r border-gray-300 px-px',
+                'flex items-center bg-gray-50 ltr:rounded-l-lg rtl:rounded-r-lg ltr:border-r rtl:border-l border-gray-300 px-px',
                 'dark:bg-gray-800 dark:border-gray-600',
             ]) data-sortable-handle>
-                @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4 -mr-2')
+                @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4 ltr:-mr-2 rtl:-ml-2')
                 @svg('heroicon-o-ellipsis-vertical', 'text-gray-400 w-4 h-4')
             </button>
 
             <button
                 type="button"
                 wire:click="editItem('{{ $statePath }}')"
-                class="appearance-none px-3 py-2 text-left"
+                class="appearance-none px-3 py-2 ltr:text-left rtl:text-right"
             >
                 <span>{{ $item['label'] }}</span>
             </button>
@@ -38,7 +38,7 @@
         </div>
 
         <div @class([
-            'absolute top-0 right-0 h-6 divide-x rounded-bl-lg rounded-tr-lg border-gray-300 border-b border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:right-auto rtl:left-0 rtl:rounded-bl-none rtl:rounded-br-lg rtl:rounded-tr-none rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
+            'absolute top-0 ltr:right-0 h-6 divide-x ltr:rounded-bl-lg ltr:rounded-tr-lg border-gray-300 border-b ltr:border-l overflow-hidden rtl:border-l-0 rtl:border-r rtl:left-0 rtl:rounded-br-lg rtl:rounded-tl-lg hidden opacity-0 group-hover:opacity-100 group-hover:flex transition ease-in-out duration-250',
             'dark:border-gray-600 dark:divide-gray-600',
         ])>
             <button
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div x-show="open" x-collapse class="ml-6">
+    <div x-show="open" x-collapse class="ltr:ml-6 rtl:mr-6">
         <div
             class="space-y-2"
             wire:key="{{ $statePath }}-children"

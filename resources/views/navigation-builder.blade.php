@@ -9,6 +9,9 @@
     :state-path="$getStatePath()"
     class="filament-navigation"
 >
+    <div class="bg-pink-500 p-4 m-4">
+        dddf dfdfdf
+    </div>
     <div wire:key="navigation-items-wrapper">
         <div
             class="space-y-2"
@@ -21,7 +24,7 @@
                 <x-filament-navigation::nav-item :statePath="$getStatePath() . '.' . $uuid" :item="$item" />
             @empty
                 <div @class([
-                    'w-full bg-white rounded-lg border border-gray-300 px-3 py-2 text-left',
+                    'w-full bg-white rounded-lg border border-gray-300 px-3 py-2 ltr:text-left rtl:text-right',
                     'dark:bg-gray-700 dark:border-gray-600',
                 ])>
                     {{__('filament-navigation::filament-navigation.items.empty')}}

@@ -2,6 +2,18 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v1.0.0-beta4 - 2023-09-01
+
+### What's Changed
+
+- Spanish translation by @neurotools in https://github.com/ryangjchandler/filament-navigation/pull/92
+
+### New Contributors
+
+- @neurotools made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/92
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v1.0.0-beta3...v1.0.0-beta4
+
 ## v1.0.0-beta3 - 2023-08-07
 
 ### What's Changed
@@ -193,6 +205,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

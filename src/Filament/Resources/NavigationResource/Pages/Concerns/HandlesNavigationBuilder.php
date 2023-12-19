@@ -74,10 +74,6 @@ trait HandlesNavigationBuilder
         return [
             Action::make('item')
                 ->mountUsing(function (ComponentContainer $form) {
-                    if (! $this->mountedItem) {
-                        return;
-                    }
-
                     $form->fill($this->mountedItemData);
                 })
                 ->view('filament-navigation::hidden-action')

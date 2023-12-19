@@ -26,10 +26,7 @@ trait HandlesNavigationBuilder
         $items = [];
 
         foreach ($targetItemsStatePaths as $targetItemStatePath) {
-            $item = data_get($this, $targetItemStatePath);
-            $uuid = Str::afterLast($targetItemStatePath, '.');
-
-            $items[$uuid] = $item;
+            $items[] = data_get($this, $targetItemStatePath);
         }
 
         data_set($this, $targetStatePath, $items);
@@ -132,7 +129,7 @@ trait HandlesNavigationBuilder
                     } elseif ($this->mountedChildTarget) {
                         $children = data_get($this, $this->mountedChildTarget . '.children', []);
 
-                        $children[(string) Str::uuid()] = [
+                        $children[] = [
                             ...$data,
                             ...['children' => []],
                         ];
@@ -141,7 +138,7 @@ trait HandlesNavigationBuilder
 
                         $this->mountedChildTarget = null;
                     } else {
-                        $this->data['items'][(string) Str::uuid()] = [
+                        $this->data['items'][] = [
                             ...$data,
                             ...['children' => []],
                         ];

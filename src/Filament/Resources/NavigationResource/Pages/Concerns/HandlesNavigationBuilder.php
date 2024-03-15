@@ -81,47 +81,7 @@ trait HandlesNavigationBuilder
                     $form->fill($this->mountedItemData);
                 })
                 ->view('filament-navigation::hidden-action')
-                ->form([
-                    TextInput::make('label')
-                        ->label(__('filament-navigation::filament-navigation.items-modal.label'))
-                        ->required(),
-                    Select::make('type')
-                        ->label(__('filament-navigation::filament-navigation.items-modal.type'))
-                        ->options(function () {
-                            $types = FilamentNavigation::get()->getItemTypes();
-
-                            return array_combine(array_keys($types), Arr::pluck($types, 'name'));
-                        })
-                        ->afterStateUpdated(function ($state, Select $component): void {
-                            if (! $state) {
-                                return;
-                            }
-
-                            // NOTE: This chunk of code is a workaround for Livewire not letting
-                            //       you entangle to non-existent array keys, which wire:model
-                            //       would normally let you do.
-                            $component
-                                ->getContainer()
-                                ->getComponent(fn (Component $component) => $component instanceof Group)
-                                ->getChildComponentContainer()
-                                ->fill();
-                        })
-                        ->reactive(),
-                    Group::make()
-                        ->statePath('data')
-                        ->whenTruthy('type')
-                        ->schema(function (Get $get) {
-                            $type = $get('type');
-
-                            return FilamentNavigation::get()->getItemTypes()[$type]['fields'] ?? [];
-                        }),
-                    Group::make()
-                        ->statePath('data')
-                        ->visible(fn (Component $component) => $component->evaluate(FilamentNavigation::get()->getExtraFields()) !== [])
-                        ->schema(function (Component $component) {
-                            return FilamentNavigation::get()->getExtraFields();
-                        }),
-                ])
+                ->form(static::getItemFormSchema())
                 ->modalWidth('md')
                 ->action(function (array $data) {
                     if ($this->mountedItem) {
@@ -151,6 +111,50 @@ trait HandlesNavigationBuilder
                 })
                 ->modalButton(__('filament-navigation::filament-navigation.items-modal.btn'))
                 ->label(__('filament-navigation::filament-navigation.items-modal.title')),
+        ];
+    }
+
+    protected static function getItemFormSchema(): array
+    {
+        return [
+            TextInput::make('label')
+                ->label(__('filament-navigation::filament-navigation.items-modal.label'))
+                ->required(),
+            Select::make('type')
+                ->label(__('filament-navigation::filament-navigation.items-modal.type'))
+                ->options(function () {
+                    $types = FilamentNavigation::get()->getItemTypes();
+
+                    return array_combine(array_keys($types), Arr::pluck($types, 'name'));
+                })
+                ->afterStateUpdated(function ($state, Select $component): void {
+                    if (! $state) {
+                        return;
+                    }
+
+                    // NOTE: This chunk of code is a workaround for Livewire not letting you entangle to non-existent array
+                    //       keys, which wire:model would normally let you do.
+                    $component
+                        ->getContainer()
+                        ->getComponent(fn (Component $component) => $component instanceof Group)
+                        ->getChildComponentContainer()
+                        ->fill();
+                })
+                ->reactive(),
+            Group::make()
+                ->statePath('data')
+                ->whenTruthy('type')
+                ->schema(function (Get $get) {
+                    $type = $get('type');
+
+                    return FilamentNavigation::get()->getItemTypes()[$type]['fields'] ?? [];
+                }),
+            Group::make()
+                ->statePath('data')
+                ->visible(fn (Component $component) => $component->evaluate(FilamentNavigation::get()->getExtraFields()) !== [])
+                ->schema(function (Component $component) {
+                    return FilamentNavigation::get()->getExtraFields();
+                }),
         ];
     }
 }

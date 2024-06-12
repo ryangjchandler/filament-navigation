@@ -21,8 +21,18 @@ class Navigation extends Model
         'items' => 'json',
     ];
 
-    public static function fromHandle(string $handle): ?static
+    public static function fromHandle(string $handle, $isTenant = false): ?static
     {
-        return static::query()->firstWhere('handle', $handle);
+        $rows = static::query();
+        if ($isTenant) {
+            $rows = $rows->where('team_id', getTeamID());
+        }
+
+        return $rows->firstWhere('handle', $handle);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(\App\Models\Team::class);
     }
 }

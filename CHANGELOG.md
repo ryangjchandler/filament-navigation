@@ -2,6 +2,10 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v1.0.0-beta5 - 2024-03-13
+
+* Add support for Laravel 11.x
+
 ## v1.0.0-beta4 - 2023-09-01
 
 ### What's Changed
@@ -205,6 +209,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

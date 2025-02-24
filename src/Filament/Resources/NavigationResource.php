@@ -46,12 +46,14 @@ class NavigationResource extends Resource
                         ->label(__('filament-navigation::filament-navigation.attributes.name'))
                         ->reactive()
                         ->debounce()
-                        ->afterStateUpdated(function (?string $state, Set $set) {
+                        ->afterStateUpdated(function (?string $state, Set $set, string $context) {
                             if (! $state) {
                                 return;
                             }
 
-                            $set('handle', Str::slug($state));
+                            if ($context === 'create') {
+                                $set('handle', Str::slug($state));
+                            }
                         })
                         ->required(),
                     ViewField::make('items')

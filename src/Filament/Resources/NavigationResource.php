@@ -51,7 +51,7 @@ class NavigationResource extends Resource
                                 return;
                             }
 
-                            if ($context == 'create') {
+                            if ($context === 'create') {
                                 $set('handle', Str::slug($state));
                             }
                         })

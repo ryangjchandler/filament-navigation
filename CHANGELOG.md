@@ -2,6 +2,18 @@
 
 All notable changes to `filament-navigation` will be documented in this file.
 
+## v1.0.0-beta6 - 2025-02-24
+
+### What's Changed
+
+* Stop name overriding handle on edit page by @ralphmorris in https://github.com/ryangjchandler/filament-navigation/pull/108
+
+### New Contributors
+
+* @ralphmorris made their first contribution in https://github.com/ryangjchandler/filament-navigation/pull/108
+
+**Full Changelog**: https://github.com/ryangjchandler/filament-navigation/compare/v1.0.0-beta5...v1.0.0-beta6
+
 ## v1.0.0-beta5 - 2024-03-13
 
 * Add support for Laravel 11.x
@@ -209,6 +221,7 @@ composer update
 php artisan view:clear
 php artisan vendor:publish --tag="filament-navigation-assets"
 php artisan migrate
+
 
 
 

@@ -100,11 +100,11 @@ trait HandlesNavigationBuilder
                             // NOTE: This chunk of code is a workaround for Livewire not letting
                             //       you entangle to non-existent array keys, which wire:model
                             //       would normally let you do.
-                            $component
-                                ->getContainer()
-                                ->getComponent(fn (Component $component) => $component instanceof Group)
-                                ->getChildComponentContainer()
-                                ->fill();
+                            foreach ($component->getContainer()->getComponents() as $component) {
+                                if ($component instanceof Group) {
+                                    $component->getChildComponentContainer()->fill();
+                                }
+                            }
                         })
                         ->reactive(),
                     Group::make()

@@ -24,7 +24,7 @@ it('can create a navigation menu with items', function () {
     Livewire::test(CreateNavigation::class)
         ->set('data.name', 'Foo')
         ->call('mountAction', 'item')
-        ->set('mountedActionData', [
+        ->setActionData([
             'label' => 'Bar',
             'type' => 'external-link',
             'data' => [
@@ -50,4 +50,4 @@ it('can create a navigation menu with items', function () {
                         'url' => '/bar',
                     ])
             );
-})->skip();
+});
